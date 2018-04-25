@@ -1,23 +1,36 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { AppRegistry, StatusBar, View } from 'react-native';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/es/integration/react';
 
-export default class App extends React.Component {
+import { persistor, store } from './src/store';
+import Navigator from './src/navigation/NavigatorContainer';
+import styles from './src/styles/AppStyles';
+import colors from './src/styles/colors';
+import { appOperations } from './src/modules/app';
+
+class App extends Component {
+  componentDidMount() {
+    store.dispatch(appOperations.loadAssets());
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+      <View style={styles.rootStyle}>
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor={colors.white}
+        />
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <Navigator />
+          </PersistGate>
+        </Provider>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+AppRegistry.registerComponent('UBCourier', () => App);
+
+export default App;
