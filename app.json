@@ -1,5 +1,32 @@
 {
   "expo": {
-    "sdkVersion": "26.0.0"
+    "sdkVersion": "26.0.0",
+    "packagerOpts": {
+      "assetExts": ["ttf"]
+    },
+    "orientation": "portrait",
+    "primaryColor": "#8BC34A",
+    "androidStatusBarColor": "#689F38",
+    "androidStatusBar": {
+      "backgroundColor": "#689F38",
+      "barStyle": "dark-content"
+    },
+    "icon": "./src/images/icon.png",
+    "splash": {
+      "image": "./src/assets/icons/splash.png",
+      "resizeMode": "cover"
+    },
+    "name": "UBCourier",
+    "version": "0.0.1",
+    "slug": "ub-courier-app",
+    "ios": {
+      "bundleIdentifier": "com.osiris.ubcourier"
+    },
+    "android": {
+      "package": "com.osiris.ubcourier"
+    },
+    "facebookScheme": "fb1898851393519411",
+    "facebookAppId": "1898851393519411",
+    "facebookDisplayName": "UBCourier Auth"
   }
 }
