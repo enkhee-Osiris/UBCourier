@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import colors from './colors';
-import { indent, doubleIndent, headerHeight } from './dimensions';
+import { indent, doubleIndent } from './dimensions';
 
 const styles = StyleSheet.create({
   blockStyle: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     color: colors.greyDarker,
   },
   headerStyle: {
-    height: headerHeight,
+    height: 56,
     paddingLeft: indent,
     paddingRight: indent,
     backgroundColor: colors.white,

@@ -2,11 +2,11 @@ import { Font } from 'expo';
 
 import fonts from '../../constants/fonts';
 import images from '../../constants/images';
-
 import loadImgs from '../../utils/imageUtils';
 import {
   imagesLoaded,
   fontsLoaded,
+  netInfoChanged,
 } from './actions';
 
 const loadFonts = () => async (dispatch) => {
@@ -36,4 +36,5 @@ const loadAssets = () => (dispatch) => {
 
 export default {
   loadAssets,
+  netInfoChanged,
 };

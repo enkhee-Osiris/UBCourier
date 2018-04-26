@@ -1,20 +1,17 @@
 import { StackNavigator } from 'react-navigation';
 import { Home } from '../../screens';
 import screens from '../../constants/screens';
-import styles from '../../styles/AppStyles';
+import navOptions from '../../styles/navOptions';
 
 const TrendsNavigator = StackNavigator({
   [screens.Home]: {
     screen: Home,
   },
 }, {
-  ...{
+  ...navOptions({
     title: 'Home',
-    // icon: 'settings',
-    headerStyle: styles.headerStyle,
-    headerTitleStyle: styles.headerTitleStyle,
-    headerBackTitle: null,
-  },
+    icon: 'ios-home-outline',
+  }),
 });
 
 export default TrendsNavigator;

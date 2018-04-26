@@ -9,11 +9,11 @@ const Screen = ({ navigation }) => (
     <View>
       <Button
         title="Settings"
-        onPress={() => navigation.navigate(screens.Settings)}
+        onPress={() => navigation.navigate(screens.SettingsRoot)}
       />
       <Button
         title="Screen"
-        onPress={() => navigation.navigate(screens.Screen)}
+        onPress={() => navigation.navigate(screens.ScreenRoot)}
       />
     </View>
 

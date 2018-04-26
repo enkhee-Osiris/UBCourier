@@ -1,7 +1,7 @@
 export default {
   // Basic colors
   white: '#ffffff',
-  black: '#131314',
+  black: '#020202',
   grey: '#D7DFE3',
   greyDarker: '#afb8bb',
   green: '#27ae60',

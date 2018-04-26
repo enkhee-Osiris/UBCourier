@@ -1,21 +1,17 @@
 import { StackNavigator } from 'react-navigation';
 import { Settings } from '../../screens';
 import screens from '../../constants/screens';
-import styles from '../../styles/AppStyles';
-// import navOptions from '../../utils/navOptions';
+import navOptions from '../../styles/navOptions';
 
 const SettingsNavigator = StackNavigator({
   [screens.Settings]: {
     screen: Settings,
   },
 }, {
-  ...{
+  ...navOptions({
     title: 'Settings',
-    // icon: 'settings',
-    headerStyle: styles.headerStyle,
-    headerTitleStyle: styles.headerTitleStyle,
-    headerBackTitle: null,
-  },
+    icon: 'ios-settings-outline',
+  }),
 });
 
 export default SettingsNavigator;

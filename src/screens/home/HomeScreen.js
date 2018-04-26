@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, View, Button } from 'react-native';
+import { View, Button, Text } from 'react-native';
 import screens from '../../constants/screens';
+/* import { Text } from '../../components'; */
 
 const Home = ({ navigation }) => (
   <View>
@@ -10,17 +11,17 @@ const Home = ({ navigation }) => (
     <View>
       <Button
         title="Settings"
-        onPress={() => navigation.navigate(screens.Settings)}
+        onPress={() => navigation.navigate(screens.SettingsRoot)}
       />
       <Button
         title="Screen"
-        onPress={() => navigation.navigate(screens.Screen)}
+        onPress={() => navigation.navigate(screens.ScreenRoot)}
       />
     </View>
   </View>
 );
 
-Home.prototype = {
+Home.propTypes = {
   navigation: PropTypes.object,
 };
 

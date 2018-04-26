@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, Platform } from 'react-native';
-import colors from '../../styles/colors';
-
+import { StyleSheet, View, Platform, Text } from 'react-native';
+/* import { Logo } from '../../components';*/
 import { dimensions } from '../../styles';
+import colors from '../../styles/colors';
+import DrawerNavigatorItems from './components/DrawerNavigationItems';
 
 const styles = StyleSheet.create({
   titleContainerStyle: {
@@ -16,16 +16,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const Drawer = ({ navigation }) => (
-  <View style={{ backgroundColor: 'black' }}>
+const Drawer = props => (
+  <View>
     <View style={styles.titleContainerStyle}>
-      <Text style={{ color: 'red' }}>Osiris Drawer</Text>
+      <Text>Osiris</Text>
     </View>
+    <DrawerNavigatorItems {...props} />
   </View>
 );
-
-Drawer.propTypes = {
-  navigation: PropTypes.object,
-};
 
 export default Drawer;

@@ -11,18 +11,18 @@ const Settings = ({ navigation }) => (
     </View>
 
     { Platform.select({
-      ios: (
-        <View>
-          <Button
-            title="Home"
-            onPress={() => navigation.navigate(screens.Home)}
-          />
-          <Button
-            title="Screen"
-            onPress={() => navigation.navigate(screens.Screen)}
-          />
-        </View>
-      ),
+        ios: (
+          <View>
+            <Button
+              title="Home"
+              onPress={() => navigation.navigate(screens.HomeRoot)}
+            />
+            <Button
+              title="Screen"
+              onPress={() => navigation.navigate(screens.ScreenRoot)}
+            />
+          </View>
+        ),
     }) }
   </View>
 );
