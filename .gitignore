@@ -18,4 +18,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # env locals
-/src/config/local.js
+src/config/local.js
