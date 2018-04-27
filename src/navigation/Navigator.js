@@ -1,6 +1,6 @@
 import { DrawerNavigator } from 'react-navigation';
 import { Drawer } from '../components';
-import Routes from './routes/RootRoutes';
+import Routes from './RootRoutes';
 
 
 const Navigator = DrawerNavigator;

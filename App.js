@@ -6,7 +6,7 @@ import { PersistGate } from 'redux-persist/es/integration/react';
 import { persistor, store } from './src/store';
 import Navigator from './src/navigation/NavigatorContainer';
 import styles from './src/styles/AppStyles';
-import colors from './src/styles/colors';
+import { colors } from './src/styles';
 import { appOperations } from './src/modules/app';
 
 class App extends Component {
@@ -25,7 +25,7 @@ class App extends Component {
     );
   }
 
-  handleConnectionChange(connectionInfo) {
+  handleConnectionChange(connectionInfo) { // eslint-disable-line
     store.dispatch(appOperations.netInfoChanged(connectionInfo.type !== 'none'));
   }
 
