@@ -8,16 +8,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.black,
     width: 250,
     height: 45,
-    borderColor: colors.defaultPrimary,
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 5,
     marginBottom: 15,
-  },
-  buttonTitle: {
-    color:  colors.defaultPrimary,
   },
   text: {
     color: colors.black,
