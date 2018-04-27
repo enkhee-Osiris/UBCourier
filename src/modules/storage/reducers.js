@@ -3,7 +3,7 @@ import { REHYDRATE } from 'redux-persist';
 
 const initialState = { isReady: false };
 
-const transfersReducer = handleActions(
+const storageReducer = handleActions(
   {
     [REHYDRATE]: () => ({
       isReady: true,
@@ -12,4 +12,4 @@ const transfersReducer = handleActions(
   initialState,
 );
 
-export default transfersReducer;
+export default storageReducer;

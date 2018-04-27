@@ -7,7 +7,7 @@ const initialState = {
   isNetConnected: false,
 };
 
-const authReducer = handleActions(
+const appReducer = handleActions(
   {
     [types.IMAGES_LOADED]: (state, { payload }) => ({
       ...state,
@@ -25,4 +25,4 @@ const authReducer = handleActions(
   initialState,
 );
 
-export default authReducer;
+export default appReducer;
