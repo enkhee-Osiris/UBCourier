@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     height: Platform.OS === 'android' ? 66 : 86,
     justifyContent: 'flex-end',
     borderBottomWidth: 1,
-    borderBottomColor: colors.grey,
+    borderBottomColor: colors.lightGrey,
     paddingLeft: dimensions.indent,
     paddingBottom: dimensions.indent,
   },
