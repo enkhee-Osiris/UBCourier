@@ -8,6 +8,9 @@ export default {
   ScreenRoot: 'ScreenRoot',
   Screen: 'Screen',
 
+  LoginRoot: 'LoginRoot',
+  Login: 'Login',
+
   DrawerOpen: 'DrawerOpen',
   DrawerClose: 'DrawerClose',
 };
