@@ -10,7 +10,7 @@ const LoginNavigator = StackNavigator({
 }, {
   ...navOptions({
     title: 'Login',
-    icon: 'ios-home-outline',
+    icon: 'ios-log-in',
   }),
 });
 
