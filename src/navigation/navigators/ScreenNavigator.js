@@ -3,7 +3,7 @@ import { Screen } from '../../screens';
 import screens from '../../constants/screens';
 import navOptions from '../../styles/navOptions';
 
-const SettingsNavigator = StackNavigator({
+const ScreenNavigator = StackNavigator({
   [screens.Screen]: {
     screen: Screen,
   },
@@ -14,4 +14,4 @@ const SettingsNavigator = StackNavigator({
   }),
 });
 
-export default SettingsNavigator;
+export default ScreenNavigator;

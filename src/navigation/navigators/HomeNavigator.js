@@ -3,7 +3,7 @@ import { Home } from '../../screens';
 import screens from '../../constants/screens';
 import navOptions from '../../styles/navOptions';
 
-const TrendsNavigator = StackNavigator({
+const HomeNavigator = StackNavigator({
   [screens.Home]: {
     screen: Home,
   },
@@ -14,4 +14,4 @@ const TrendsNavigator = StackNavigator({
   }),
 });
 
-export default TrendsNavigator;
+export default HomeNavigator;
