@@ -5,6 +5,7 @@ import LoginScreenView from './LoginScreenView';
 
 const mapStateToProps = ({ auth }) => ({
   isLoggedIn: auth.isLoggedIn,
+  error: auth.error,
 });
 
 const withValidation = withProps(({ email, password }) => ({
