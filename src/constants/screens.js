@@ -1,4 +1,7 @@
 export default {
+  DrawerNavigation: 'DrawNavigation',
+  LoginNavigation: 'LoginNavigation',
+
   HomeRoot: 'HomeRoot',
   Home: 'Home',
 

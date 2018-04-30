@@ -3,7 +3,6 @@ import {
   HomeNavigator,
   ScreenNavigator,
   SettingsNavigator,
-  LoginNavigator,
 } from './navigators';
 
 const Routes = {
@@ -15,9 +14,6 @@ const Routes = {
   },
   [screens.SettingsRoot]: {
     screen: SettingsNavigator,
-  },
-  [screens.LoginRoot]: {
-    screen: LoginNavigator,
   },
 };
 
