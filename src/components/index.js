@@ -3,6 +3,7 @@ import Loading from './Loading';
 import NavButton from './NavButton';
 import NavIcon from './NavIcon';
 import Text from './Text';
+import Input from './Input';
 import TouchableItem from './TouchableItem';
 import PropsProxyHOC from './PropsProxyHOC';
 
@@ -12,6 +13,7 @@ export {
   NavButton,
   NavIcon,
   Text,
+  Input,
   TouchableItem,
   PropsProxyHOC,
 };
