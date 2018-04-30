@@ -14,7 +14,6 @@ const onCheckingConnection = ({ toggleCheckingConnection, dispatch }) => async (
 
 const enhance = compose(
   connect(),
-
   withState('isCheckingConnection', 'toggleCheckingConnection', false),
   withHandlers({
     onCheckingConnection,

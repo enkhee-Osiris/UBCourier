@@ -1,5 +1,4 @@
 import { Font } from 'expo';
-
 import fonts from '../../constants/fonts';
 import images from '../../constants/images';
 import loadImgs from '../../utils/imageUtils';

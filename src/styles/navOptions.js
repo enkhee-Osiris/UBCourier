@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavIcon, PropsProxyHOC } from '../components';
 import styles from '../styles/AppStyles';
 
