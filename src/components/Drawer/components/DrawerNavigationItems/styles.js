@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: colors.grey,
+    borderBottomColor: colors.lightGrey,
     height: 62,
   },
   icon: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: fontSizes.medium,
-    color: colors.black,
+    color: colors.darkGrey,
     fontWeight: fontWeights.normal,
   },
   activeLabel: {

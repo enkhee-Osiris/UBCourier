@@ -1,35 +1,24 @@
 export default {
   // Basic colors
-  white: '#ffffff',
-  black: '#020202',
-  grey: '#D7DFE3',
-  greyDarker: '#afb8bb',
-  green: '#27ae60',
-  greenLight: '#05c46b',
-  orange: '#f39c12',
-  blue: '#2980b9',
-  red: '#ef1f28',
+  white: '#FFFFFA',
+  black: '#020200',
+  grey: '#51514F',
+  greyDarker: '#383831',
+  green: '#29CE8C',
+  greenLight: '#47FFB5',
+  orange: '#FFB94C',
+  blue: '#3D82AF',
+  red: '#F93941',
 
-  primary: '#504B4B',
-  primaryDarken: '#323131',
-  secondary: '#1CD493',
-  secondaryOpacity: 'rgba(28, 212, 147, .4)',
-  // error: '#FF445B',
-  // white: '#FFFFFF',
   lightGrey: '#dbdbdb',
-
   darkGrey: '#7A7777',
   transparent: 'rgba(0, 0, 0, 0)',
 
-  // material light-green/orange
-  darkPrimary: '#689F38',
-  defaultPrimary: '#8BC34A',
-  lightPrimary: '#DCEDC8',
-  textPrimary: '#FFFFFF',
-  accent: '#FF9800',
-  primaryText: '#212121',
-  secondaryText: '#757575',
-  divider: '#BDBDBD',
+  // Base colors
+  primary: '#383831',
+  primaryDarken: '#020200',
+  secondary: '#1CD493',
+  secondaryOpacity: 'rgba(28, 212, 147, .4)',
 
   // status colors
   info: '#0288D1',
@@ -44,22 +33,4 @@ export default {
   darkShadow: 'rgba(0, 0, 0, 0.4)',
   border: '#ededed',
   backgroundColor: '#E9E9EF',
-};
-
-export const chartPalette = {
-  blue500: '#2196F3',
-  red500: '#F44336',
-  green500: '#4CAF50',
-  lightBlue500: '#03A9F4',
-  pink500: '#E91E63',
-  lime500: '#CDDC39',
-  cyan500: '#00BCD4',
-  purple500: '#9C27B0',
-  yellow500: '#FFEB3B',
-  blueGray500: '#607D8B',
-};
-
-export const categoryTypesColor = {
-  income: '#1E88E5',
-  expense: '#E53935',
 };

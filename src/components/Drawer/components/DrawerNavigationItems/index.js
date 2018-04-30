@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import StylePropType from 'react-style-proptype';
-import { TouchableItem } from '../../../../components';
+import { Text, TouchableItem } from '../../../../components';
 import { colors } from '../../../../styles';
 import s from './styles';
 

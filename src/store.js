@@ -23,6 +23,7 @@ if (__DEV__) {
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
+  blacklist: ['navigator', 'app'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
@@ -34,6 +35,8 @@ const store = createStore(
 );
 
 const persistor = persistStore(store, null);
+
+// persistor.purge();
 
 export {
   store,
