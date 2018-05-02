@@ -1,6 +1,6 @@
 import Drawer from './Drawer/Drawer';
 import Loading from './Loading';
-import NavButton from './NavButton';
+import NavigationButton from './NavigationButton';
 import NavIcon from './NavIcon';
 import Text from './Text';
 import Input from './Input';
@@ -10,7 +10,7 @@ import PropsProxyHOC from './PropsProxyHOC';
 export {
   Drawer,
   Loading,
-  NavButton,
+  NavigationButton,
   NavIcon,
   Text,
   Input,
