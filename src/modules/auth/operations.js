@@ -23,7 +23,7 @@ const logOut = () => async (dispatch) => {
 
 const logInWithFacebook = () => async (dispatch) => {
   const { type, token } = await Facebook
-    .loginwithreadpermissionsasync(FACEBOOK_APP_ID, { permissions: ['public_profile'] });
+    .logInWithReadPermissionsAsync(FACEBOOK_APP_ID, { permissions: ['public_profile'] });
 
   if (type === 'success') {
     const credential = firebase.auth.FacebookAuthProvider.credential(token);
@@ -32,8 +32,9 @@ const logInWithFacebook = () => async (dispatch) => {
       .signInWithCredential(credential)
       .then(user => (dispatch(loggedIn(user))))
       .catch(error => (dispatch(errorOccured(error))));
+  } else {
+    dispatch(errorOccured({ message: 'Facebook login failed' }));
   }
-  dispatch(loggedIn({ email: 'enkhee.ag', uid: '123' }));
 };
 
 export default {
