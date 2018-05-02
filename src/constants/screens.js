@@ -12,7 +12,9 @@ export default {
   Screen: 'Screen',
 
   LoginRoot: 'LoginRoot',
+  Auth: 'Auth',
   Login: 'Login',
+  Register: 'Register',
 
   DrawerOpen: 'DrawerOpen',
   DrawerClose: 'DrawerClose',

@@ -1,16 +1,17 @@
 import { StackNavigator } from 'react-navigation';
-import { Login } from '../../screens';
+import { Login, Auth, Register } from '../../screens';
 import screens from '../../constants/screens';
-import navOptions from '../../styles/navOptions';
 
 const LoginNavigator = StackNavigator({
+  [screens.Auth]: {
+    screen: Auth,
+  },
   [screens.Login]: {
     screen: Login,
   },
 }, {
-  ...navOptions({
-    title: 'Login',
-  }),
+  headerMode: 'none',
+  title: 'Login',
 });
 
 export default LoginNavigator;
