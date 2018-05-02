@@ -1,10 +1,11 @@
-import { NavIcon, PropsProxyHOC } from '../components';
+import React from 'react';
+import { NavIcon, PropsProxyHOC, Logo } from '../components';
 import styles from '../styles/AppStyles';
 
 const navOptions = ({ title, icon }) => ({
   navigationOptions: {
     title,
-    headerTitle: title,
+    headerTitle: <Logo />,
     drawerIcon: PropsProxyHOC(NavIcon, { name: icon }),
     headerStyle: styles.headerStyle,
     headerBackTitle: null,
