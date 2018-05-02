@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StylePropType from 'react-style-proptype';
-import { TextInput, View } from 'react-native';
+import { TextInput, View, Text } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { Text } from '../../components';
 import { colors } from '../../styles';
 import s from './styles';
 

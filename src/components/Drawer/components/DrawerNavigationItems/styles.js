@@ -1,5 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { fontSizes, fontWeights, colors } from '../../../../styles';
+import {
+  fontSizes,
+  fontWeights,
+  colors,
+  fontStyle,
+} from '../../../../styles';
 
 const styles = StyleSheet.create({
   item: {
@@ -21,11 +26,11 @@ const styles = StyleSheet.create({
     borderLeftWidth: 5,
     borderLeftColor: colors.green,
   },
-  label: {
+  label: fontStyle({
     fontSize: fontSizes.medium,
     color: colors.darkGrey,
     fontWeight: fontWeights.normal,
-  },
+  }),
   activeLabel: {
     color: colors.green,
   },

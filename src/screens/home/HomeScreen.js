@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Button, Text } from 'react-native';
 import screens from '../../constants/screens';
-/* import { Text } from '../../components'; */
 
 const Home = ({ navigation }) => (
   <View>

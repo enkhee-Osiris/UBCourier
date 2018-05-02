@@ -1,9 +1,9 @@
 import colors from './colors';
 import fontSizes from './fontSizes';
+import fontStyle from './fontStyle';
+import fontWeights from './fontWeights';
 import * as dimensions from './dimensions';
 import * as scalingUtils from './scalingUtils';
-import * as fontWeights from './fontWeights';
-
 
 export {
   colors,
@@ -11,4 +11,5 @@ export {
   scalingUtils,
   fontSizes,
   fontWeights,
+  fontStyle,
 };
