@@ -10,17 +10,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const Logo = ({ logoStyle }) => (
-  <View>
+const Logo = ({ containerStyle, style }) => (
+  <View style={containerStyle}>
     <Image
-      style={[styles.logo, logoStyle]}
+      style={[styles.logo, style]}
       source={logo}
     />
   </View>
 );
 
 Logo.propTypes = {
-  logoStyle: StylePropType,
+  containerStyle: StylePropType,
+  style: StylePropType,
 };
 
 export default Logo;
