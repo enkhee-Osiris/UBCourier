@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Input, NavigationButton, TouchableItem } from '../../components';
-import screens from '../../constants/screens';
 import appStyles from '../../styles/AppStyles';
 import { colors, fontSizes, fontWeights } from '../../styles';
 import s from './styles';
@@ -20,6 +19,7 @@ const Login = ({
   error,
   onEmailChange,
   onPasswordChange,
+  onRegisterPress,
   isLoading,
   isValid,
   onLogIn,
@@ -84,7 +84,7 @@ const Login = ({
         <Text style={s.signUpText}>
           If you don&apos;t have an account.
         </Text>
-        <TouchableItem onPress={() => navigation.navigate(screens.Register)} >
+        <TouchableItem onPress={() => onRegisterPress()} >
           <Text style={s.navigator}> Register Here</Text>
         </TouchableItem>
       </View>
@@ -105,6 +105,7 @@ Login.propTypes = {
   passwordError: PropTypes.string,
   onEmailChange: PropTypes.func,
   onPasswordChange: PropTypes.func,
+  onRegisterPress: PropTypes.func,
   isLoading: PropTypes.bool,
   isValid: PropTypes.bool,
   onLogIn: PropTypes.func,
