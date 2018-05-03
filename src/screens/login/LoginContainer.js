@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
-import { compose, withState, withHandlers, hoistStatics, withProps, defaultProps } from 'recompose';
+import { compose, withState, withHandlers, lifecycle, withProps } from 'recompose';
 import { authOperations } from '../../modules/auth';
+import screens from '../../constants/screens';
 import LoginScreenView from './LoginScreenView';
 
 const mapStateToProps = ({ auth }) => ({
@@ -10,36 +11,35 @@ const mapStateToProps = ({ auth }) => ({
 
 const withValidation = withProps(({ email, password }) => ({
   isValid: !!email && !!password && email.length > 0 && password.length > 0,
+  emailError: !!email && email.length > 0 ? '' : 'Email must be filled',
+  passwordError: !!password && password.length > 0 ? '' : 'Password must be filled',
 }));
 
 const enhance = compose(
-  // connect(mapStateToProps, authOperations),
   connect(mapStateToProps, authOperations),
-  withState('email', 'onEmailChange', 'osiris'),
-  withState('password', 'onPasswordChange', 'aaaa'),
-  withState('isLoggedIn', 'toggleLogin', false),
+  withState('email', 'onEmailChange', ''),
+  withState('password', 'onPasswordChange', ''),
   withState('isLoading', 'toggleLoading', false),
   withHandlers({
-    onLogOut: props => () => {
-      props.toggleLoading(true);
-      props.logOut();
-      props.toggleLogin(false);
-      props.toggleLoading(false);
-    },
     onLogIn: props => (email, password) => {
       props.toggleLoading(true);
       props.logIn(email, password);
-      props.toggleLogin(true);
-      props.toggleLoading(false);
-    },
-    onLogInWithFacebook: props => () => {
-      props.toggleLoading(true);
-      props.logInWithFacebook();
-      props.toggleLogin(true);
       props.toggleLoading(false);
     },
   }),
   withValidation,
+  lifecycle({
+    componentWillMount() {
+      if (this.props.isLoggedIn) {
+        this.props.navigation.navigate(screens.DrawerNavigation);
+      }
+    },
+    componentDidUpdate() {
+      if (this.props.isLoggedIn) {
+        this.props.navigation.navigate(screens.DrawerNavigation);
+      }
+    },
+  }),
 );
 
 export default enhance(LoginScreenView);

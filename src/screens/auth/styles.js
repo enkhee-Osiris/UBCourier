@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   error: fontStyle({
     fontSize: fontSizes.small,
     color: colors.error,
+    textAlign: 'center',
   }),
   navigatorsContainer: {
     flexDirection: 'row',

@@ -1,96 +1,93 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   Text,
-  UIManager,
-  KeyboardAvoidingView,
-  Alert,
 } from 'react-native';
 import { Button } from 'react-native-elements';
-import { Input } from '../../components';
+import { Input, NavigationButton, TouchableItem } from '../../components';
+import screens from '../../constants/screens';
+import appStyles from '../../styles/AppStyles';
+import { colors, fontSizes, fontWeights } from '../../styles';
 import s from './styles';
-
-// Enable LayoutAnimation on Android
-UIManager.setLayoutAnimationEnabledExperimental
-  && UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const Login = ({
   navigation,
   email,
   password,
+  emailError,
+  passwordError,
+  error,
   onEmailChange,
   onPasswordChange,
   isLoading,
-  isLoggedIn,
   isValid,
   onLogIn,
-  onLogOut,
-  onLogInWithFacebook,
 }) => (
-  <View style={s.container}>
-    <KeyboardAvoidingView
-      behavior="position"
-      contentContainerStyle={s.formContainer}
-    >
+  <View style={[s.root, appStyles.containerStyle]}>
+    <View style={s.headerContainer}>
+      <NavigationButton
+        backOnSuccess
+        containerStyle={s.backButton}
+        navigation={navigation}
+        iconName="ios-arrow-round-back"
+        size={50}
+      />
       <Text style={s.signInText}>Sign In</Text>
-      <View style={{width: '80%', alignItems: 'center'}}>
+    </View>
+    <View style={s.container}>
+      <View style={s.formContainer}>
         <Input
-          isValid
           placeholder="Email"
           value={email}
+          icon={{ name: 'ios-mail-outline' }}
           onChangeText={onEmailChange}
           secondContainerStyle={s.inputContainer}
+          containerStyleFocus={s.inputContainerFocus}
+          isNotValidStyle={null}
           style={s.inputStyle}
+          error={emailError}
         />
         <Input
-          isValid
           secureTextEntry
           placeholder="Password"
           value={password}
+          icon={{ name: 'ios-lock-outline' }}
           onChangeText={onPasswordChange}
           secondContainerStyle={s.inputContainer}
+          containerStyleFocus={s.inputContainerFocus}
+          isNotValidStyle={null}
           style={s.inputStyle}
+          error={passwordError}
         />
+        <Button
+          loading={isLoading}
+          loadingProps={{ size: 'small', color: colors.greyDarker }}
+          title="Sign In"
+          buttonStyle={s.signInButton}
+          containerViewStyle={s.signInButtonContainer}
+          color={colors.greyDarker}
+          fontFamily="Montserrat-Bold"
+          fontSize={fontSizes.small}
+          fontWeight={fontWeights.bold}
+          onPress={() => (onLogIn(email, password))}
+          disabled={!isValid || isLoading}
+        />
+        {
+          !!error &&
+          <Text style={s.error}>
+            {error.message}
+          </Text>
+        }
       </View>
-      <Button
-        loading={isLoading}
-        title="Log In"
-        containerStyle={{ flex: -1 }}
-        buttonStyle={s.logInButton}
-        linearGradientProps={{
-          colors: ['#FF9800', '#F44336'],
-          start: [1, 0],
-          end: [0.2, 0],
-        }}
-        onPress={onLogIn}
-        disabled={isLoading && isValid}
-      />
-      <Button
-        loading={isLoading}
-        title="Log Out"
-        containerStyle={{ flex: -1 }}
-        buttonStyle={s.logInButton}
-        linearGradientProps={{
-          colors: ['#FF9800', '#F44336'],
-          start: [1, 0],
-          end: [0.2, 0],
-        }}
-        onPress={onLogOut}
-        disabled={isLoading && isValid}
-      />
-    </KeyboardAvoidingView>
-    <View style={s.signUpContainer}>
-      <Text style={s.signUpAccountText}>
-        If you don't have an account.
-      </Text>
-      <Button
-        title="Sign Up"
-        containerStyle={{ flex: -1 }}
-        buttonStyle={{ backgroundColor: 'transparent' }}
-        underlayColor="transparent"
-        onPress={() => Alert.alert('🔥', 'You can login here')}
-      />
+      <View style={s.signUpContainer}>
+        <Text style={s.signUpText}>
+          If you don&apos;t have an account.
+        </Text>
+        <TouchableItem onPress={() => navigation.navigate(screens.Register)} >
+          <Text style={s.navigator}> Register Here</Text>
+        </TouchableItem>
+      </View>
     </View>
   </View>
 );
@@ -103,13 +100,14 @@ Login.propTypes = {
   navigation: PropTypes.object,
   email: PropTypes.string,
   password: PropTypes.string,
+  error: PropTypes.object,
+  emailError: PropTypes.string,
+  passwordError: PropTypes.string,
   onEmailChange: PropTypes.func,
   onPasswordChange: PropTypes.func,
-  isLoggedIn: PropTypes.bool,
   isLoading: PropTypes.bool,
   isValid: PropTypes.bool,
   onLogIn: PropTypes.func,
-  onLogInWithFacebook: PropTypes.func,
 };
 
 export default Login;

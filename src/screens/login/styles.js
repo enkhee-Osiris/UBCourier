@@ -1,56 +1,98 @@
 import { StyleSheet } from 'react-native';
-import { colors, fontSizes } from '../../styles';
+import {
+  colors,
+  fontSizes,
+  fontWeights,
+  fontStyle,
+} from '../../styles';
 
 const styles = StyleSheet.create({
-  container: {
+  root: {
     flex: 1,
-    paddingBottom: 20,
-    paddingTop: 20,
-    backgroundColor: '#293046',
-    alignItems: 'center',
+    backgroundColor: colors.white,
     justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  headerContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignSelf: 'stretch',
+    alignItems: 'center',
+  },
+  backButton: {
+    flex: 1,
+    padding: 0,
+  },
+  signInText: fontStyle({
+    flex: 3,
+    color: colors.greyDarker,
+    fontWeight: fontWeights.heavy,
+    fontSize: fontSizes.big,
+  }),
+  container: {
+    flex: 2,
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   formContainer: {
-    flex: 1,
-    justifyContent: 'space-around',
+    flex: 4,
+    justifyContent: 'flex-start',
     alignItems: 'center',
-  },
-  signInText: {
-    color: colors.white,
-    fontSize: 28,
+    paddingHorizontal: 20,
   },
   inputContainer: {
-    paddingLeft: 8,
-    borderRadius: 40,
-    borderWidth: 1,
-    borderColor: 'rgba(110, 120, 170, 1)',
+    borderWidth: 0,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.grey,
+    marginVertical: 10,
     height: 45,
     width: '100%',
-    marginVertical: 10,
+    alignSelf: 'stretch',
   },
-  inputStyle: {
-    flex: 1,
+  inputContainerFocus: {
+    borderBottomColor: colors.green,
+  },
+  inputIsNotValid: {
+    borderBottomColor: colors.error,
+  },
+  inputStyle: fontStyle({
     marginLeft: 10,
-    color: 'white',
-    fontSize: 16,
-  },
-  inputErrorStyle: {
-    marginTop: 0,
+    color: colors.drakGrey,
+    fontSize: fontSizes.medium,
+  }),
+  error: fontStyle({
+    height: 60,
+    fontSize: fontSizes.small,
+    color: colors.error,
     textAlign: 'center',
-    color: '#F44336',
-  },
-  logInButton: {
-    width: 250,
-    borderRadius: 50,
-    height: 45,
-  },
+  }),
   signUpContainer: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
   },
-  signUpAccountText: {
-    fontSize: 12,
-    color: 'white',
+  signUpText: fontStyle({
+    fontWeight: fontWeights.medium,
+    fontSize: fontSizes.verySmall,
+    color: colors.grey,
+  }),
+  navigator: fontStyle({
+    fontWeight: fontWeights.semiBold,
+    fontSize: fontSizes.verySmall,
+    color: colors.drakGrey,
+  }),
+  signInButtonContainer: {
+    width: 250,
+    height: 45,
+    margin: 0,
+    marginVertical: 20,
+  },
+  signInButton: {
+    backgroundColor: colors.transparent,
+    borderColor: colors.green,
+    borderWidth: 1,
+    borderRadius: 5,
   },
 });
 
