@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   iconStyle: {
     fontSize: 24,
-    color: colors.secondaryText,
+    color: colors.secondary,
   },
   rootStyle: {
     flex: 1,

@@ -1,5 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { colors, dimensions, fontSizes } from '../../styles';
+import {
+  colors,
+  dimensions,
+  fontSizes,
+  fontWeights,
+  fontStyle,
+} from '../../styles';
 
 const { indent, verticalIndent } = dimensions;
 
@@ -28,20 +34,20 @@ export default StyleSheet.create({
     paddingBottom: indent / 2,
     paddingTop: indent / 2,
     fontSize: fontSizes.medium,
-    fontWeight: '700',
+    fontWeight: fontWeights.bold,
   },
-  error: {
+  error: fontStyle({
     fontSize: fontSizes.small,
     color: colors.error,
-    fontWeight: '700',
+    fontWeight: fontWeights.bold,
     lineHeight: fontSizes.small,
-  },
+  }),
   prefix: {
     paddingLeft: indent,
     paddingRight: indent,
     color: colors.primary,
     fontSize: fontSizes.medium,
-    fontWeight: '700',
+    fontWeight: fontWeights.bold,
   },
   isNotValid: {
     borderWidth: 1,
