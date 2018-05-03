@@ -9,6 +9,9 @@ const LoginNavigator = StackNavigator({
   [screens.Login]: {
     screen: Login,
   },
+  [screens.Register]: {
+    screen: Register,
+  },
 }, {
   headerMode: 'none',
   title: 'Login',
