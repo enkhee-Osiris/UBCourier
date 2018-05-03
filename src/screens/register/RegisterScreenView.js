@@ -47,6 +47,9 @@ const Register = ({
           isNotValidStyle={null}
           style={s.inputStyle}
           error={emailError}
+          returnKeyType="next"
+          blurOnSubmit={false}
+          onSubmitEditing={() => this.passTextInput.focus()}
         />
         <Input
           secureTextEntry
@@ -59,6 +62,9 @@ const Register = ({
           isNotValidStyle={null}
           style={s.inputStyle}
           error={passwordError}
+          inputRef={(input) => { this.passTextInput = input; }}
+          returnKeyType="done"
+          onSubmitEditing={() => onRegister(email, password)}
         />
         <Button
           loading={isLoading}
@@ -70,7 +76,7 @@ const Register = ({
           fontFamily="Montserrat-Bold"
           fontSize={fontSizes.small}
           fontWeight={fontWeights.bold}
-          onPress={() => (onRegister(email, password))}
+          onPress={() => onRegister(email, password)}
           disabled={!isValid || isLoading}
         />
         {
