@@ -32,6 +32,10 @@ const authReducer = handleActions({
     ...state,
     error: payload,
   }),
+  [types.CLEAR_ERROR]: state => ({
+    ...state,
+    error: null,
+  }),
 }, initialState);
 
 export default authReducer;
