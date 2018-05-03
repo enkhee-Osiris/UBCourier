@@ -20,10 +20,18 @@ const enhance = compose(
   connect(mapStateToProps, authOperations),
   withState('isLoading', 'toggleLoading', false),
   withHandlers({
-    onLogInWithFacebook: props => () => {
-      props.toggleLoading(true);
-      props.logInWithFacebook();
-      props.toggleLoading(false);
+    onLogInWithFacebook: props => async () => {
+      await props.toggleLoading(true);
+      await props.logInWithFacebook();
+      await props.toggleLoading(false);
+    },
+    onRegisterPress: props => () => {
+      props.clearError();
+      props.navigation.navigate(screens.Register);
+    },
+    onSignInPress: props => () => {
+      props.clearError();
+      props.navigation.navigate(screens.Login);
     },
   }),
   lifecycle({

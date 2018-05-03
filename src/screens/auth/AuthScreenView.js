@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Alert } from 'react-native';
+import { View, Text } from 'react-native';
 import { SocialIcon } from 'react-native-elements';
 import { Logo, TouchableItem } from '../../components';
-import screens from '../../constants/screens';
 import appStyles from '../../styles/AppStyles';
 import s from './styles';
 
 const Auth = ({
-  navigation,
   error,
   isLoading,
   onLogInWithFacebook,
+  onRegisterPress,
+  onSignInPress,
 }) => (
   <View style={[s.root, appStyles.containerStyle]}>
     <Logo containerStyle={s.logoContainer} style={s.logo} />
@@ -44,10 +44,10 @@ const Auth = ({
         }
       </View>
       <View style={s.navigatorsContainer}>
-        <TouchableItem onPress={() => navigation.navigate(screens.Login)} >
+        <TouchableItem onPress={() => onSignInPress()} >
           <Text style={s.navigator}>SIGN IN</Text>
         </TouchableItem>
-        <TouchableItem onPress={() => Alert.alert('Register', 'clicked!')} >
+        <TouchableItem onPress={() => onRegisterPress()} >
           <Text style={s.navigator}>REGISTER</Text>
         </TouchableItem>
       </View>
@@ -60,10 +60,11 @@ Auth.navigationOptions = {
 };
 
 Auth.propTypes = {
-  navigation: PropTypes.object,
   error: PropTypes.object,
   isLoading: PropTypes.bool,
   onLogInWithFacebook: PropTypes.func,
+  onRegisterPress: PropTypes.func,
+  onSignInPress: PropTypes.func,
 };
 
 export default Auth;

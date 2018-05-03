@@ -21,10 +21,14 @@ const enhance = compose(
   withState('password', 'onPasswordChange', ''),
   withState('isLoading', 'toggleLoading', false),
   withHandlers({
-    onLogIn: props => (email, password) => {
-      props.toggleLoading(true);
-      props.logIn(email, password);
-      props.toggleLoading(false);
+    onLogIn: props => async (email, password) => {
+      await props.toggleLoading(true);
+      await props.logIn(email, password);
+      await props.toggleLoading(false);
+    },
+    onRegisterPress: props => () => {
+      props.clearError();
+      props.navigation.navigate(screens.Register);
     },
   }),
   withValidation,
