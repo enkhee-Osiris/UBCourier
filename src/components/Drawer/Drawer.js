@@ -1,6 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Platform, Text } from 'react-native';
-import { dimensions, colors, fontSizes, fontStyle } from '../../styles';
+import {
+  dimensions,
+  colors,
+  fontSizes,
+  fontWeights,
+  fontStyle,
+} from '../../styles';
 import DrawerNavigatorItems from './components/DrawerNavigationItems';
 
 const styles = StyleSheet.create({
@@ -13,7 +19,8 @@ const styles = StyleSheet.create({
     paddingBottom: dimensions.indent,
   },
   header: fontStyle({
-    fontSize: fontSizes.xmedium,
+    fontSize: fontSizes.big,
+    fontWeight: fontWeights.heavy,
     color: colors.black,
   }),
 });

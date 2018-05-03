@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
   },
   label: fontStyle({
     fontSize: fontSizes.medium,
-    color: colors.darkGrey,
-    fontWeight: fontWeights.normal,
+    color: colors.greyDarker,
+    fontWeight: fontWeights.semiBold,
   }),
   activeLabel: {
     color: colors.green,
