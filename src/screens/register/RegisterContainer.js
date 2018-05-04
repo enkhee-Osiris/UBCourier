@@ -3,32 +3,42 @@ import { compose, withState, withHandlers, lifecycle, withProps } from 'recompos
 import { authOperations } from '../../modules/auth';
 import screens from '../../constants/screens';
 import RegisterScreenView from './RegisterScreenView';
+import { updateUserProfile } from '../../api/firebase';
+import { defaultUserAvatar } from '../../constants/images';
 
 const mapStateToProps = ({ auth }) => ({
   isLoggedIn: auth.isLoggedIn,
   error: auth.error,
 });
 
-const withValidation = withProps(({ email, password }) => ({
+const withValidation = withProps(({ email, displayName, password }) => ({
   isValid: !!email && email.length > 0
-    && password.length > 0,
+    && !!password && password.length > 6
+    && !!displayName && displayName.length > 5,
   emailError: !!email && email.length > 0 ? '' : 'Email must be filled',
-  passwordError: !!password && password.length > 0 ? '' : 'Password must be filled',
+  displayNameError: !!displayName && displayName.length > 5 ? '' : 'Display name must be filled',
+  passwordError: !!password && password.length > 6 ? '' : 'Password must be 6 characters long',
 }));
 
 const enhance = compose(
   connect(mapStateToProps, authOperations),
   withState('email', 'onEmailChange', ''),
   withState('password', 'onPasswordChange', ''),
+  withState('displayName', 'onDisplayNameChange', ''),
   withState('isLoading', 'toggleLoading', false),
   withHandlers({
-    onRegister: props => async (email, password) => {
-      await props.toggleLoading(true);
+    onRegister: props => async (email, displayName, password) => {
+      props.toggleLoading(true);
       const isSuccess = await props.registerWithEmailAndPassword(email, password);
-      await props.toggleLoading(false);
+      props.toggleLoading(false);
       if (isSuccess) {
         await props.logIn(email, password);
       }
+      const userProfile = {
+        displayName,
+        photoURL: defaultUserAvatar,
+      };
+      updateUserProfile(userProfile);
     },
     onSignInPress: props => () => {
       props.clearError();

@@ -13,11 +13,14 @@ import s from './styles';
 const Register = ({
   navigation,
   email,
+  displayName,
   password,
   emailError,
+  displayNameError,
   passwordError,
   error,
   onEmailChange,
+  onDisplayNameChange,
   onPasswordChange,
   onSignInPress,
   isLoading,
@@ -49,7 +52,22 @@ const Register = ({
           error={emailError}
           returnKeyType="next"
           blurOnSubmit={false}
+          onSubmitEditing={() => this.nameTextInput.focus()}
+        />
+        <Input
+          placeholder="Display Name"
+          value={displayName}
+          icon={{ name: 'ios-person-outline' }}
+          onChangeText={onDisplayNameChange}
+          secondContainerStyle={s.inputContainer}
+          containerStyleFocus={s.inputContainerFocus}
+          isNotValidStyle={null}
+          style={s.inputStyle}
+          error={displayNameError}
+          returnKeyType="next"
+          blurOnSubmit={false}
           onSubmitEditing={() => this.passTextInput.focus()}
+          inputRef={(input) => { this.nameTextInput = input; }}
         />
         <Input
           secureTextEntry
@@ -64,7 +82,7 @@ const Register = ({
           error={passwordError}
           inputRef={(input) => { this.passTextInput = input; }}
           returnKeyType="done"
-          onSubmitEditing={() => onRegister(email, password)}
+          onSubmitEditing={() => onRegister(email, displayName, password)}
         />
         <Button
           loading={isLoading}
@@ -76,7 +94,7 @@ const Register = ({
           fontFamily="Montserrat-Bold"
           fontSize={fontSizes.small}
           fontWeight={fontWeights.bold}
-          onPress={() => onRegister(email, password)}
+          onPress={() => onRegister(email, displayName, password)}
           disabled={!isValid || isLoading}
         />
         {
@@ -105,11 +123,14 @@ Register.navigationOptions = {
 Register.propTypes = {
   navigation: PropTypes.object,
   email: PropTypes.string,
+  displayName: PropTypes.string,
   password: PropTypes.string,
   error: PropTypes.object,
   emailError: PropTypes.string,
+  displayNameError: PropTypes.string,
   passwordError: PropTypes.string,
   onEmailChange: PropTypes.func,
+  onDisplayNameChange: PropTypes.func,
   onPasswordChange: PropTypes.func,
   onSignInPress: PropTypes.func,
   isLoading: PropTypes.bool,

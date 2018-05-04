@@ -22,9 +22,9 @@ const enhance = compose(
   withState('isLoading', 'toggleLoading', false),
   withHandlers({
     onLogIn: props => async (email, password) => {
-      await props.toggleLoading(true);
+      props.toggleLoading(true);
       await props.logIn(email, password);
-      await props.toggleLoading(false);
+      props.toggleLoading(false);
     },
     onRegisterPress: props => () => {
       props.clearError();

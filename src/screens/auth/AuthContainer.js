@@ -4,6 +4,7 @@ import { NavigationActions } from 'react-navigation';
 import { authOperations } from '../../modules/auth';
 import screens from '../../constants/screens';
 import AuthScreenView from './AuthScreenView';
+import firebase from '../../config/firebase';
 
 const mapStateToProps = ({ auth }) => ({
   isLoggedIn: auth.isLoggedIn,
@@ -21,9 +22,9 @@ const enhance = compose(
   withState('isLoading', 'toggleLoading', false),
   withHandlers({
     onLogInWithFacebook: props => async () => {
-      await props.toggleLoading(true);
+      props.toggleLoading(true);
       await props.logInWithFacebook();
-      await props.toggleLoading(false);
+      props.toggleLoading(false);
     },
     onRegisterPress: props => () => {
       props.clearError();
@@ -36,6 +37,8 @@ const enhance = compose(
   }),
   lifecycle({
     componentWillMount() {
+      console.log(firebase.auth().currentUser);
+
       if (this.props.isLoggedIn) {
         this.props.navigation.dispatch(navigationAction);
       }
