@@ -39,15 +39,19 @@ const logInWithFacebook = () => async (dispatch) => {
   }
 };
 
+/**
+ * registers user with email and password
+ * @param {string} email
+ * @param {string} password
+ * @returns {string} uid of user
+ */
 const registerWithEmailAndPassword = (email, password) => async (dispatch) => {
-  let isSuccess = true;
+  let uid = null;
   await signUpUserWithEmailAndPassword(email, password)
-    .catch((error) => {
-      dispatch(errorOccured(error));
-      isSuccess = false;
-    });
+    .then((user) => { ({ uid } = user); })
+    .catch(error => dispatch(errorOccured(error)));
 
-  return isSuccess;
+  return uid;
 };
 
 export default {

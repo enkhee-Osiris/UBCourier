@@ -3,7 +3,7 @@ import { compose, withState, withHandlers, lifecycle, withProps } from 'recompos
 import { authOperations } from '../../modules/auth';
 import screens from '../../constants/screens';
 import RegisterScreenView from './RegisterScreenView';
-import { updateUserProfile } from '../../api/firebase';
+import { createUserProfile } from '../../api/firebase';
 import { defaultUserAvatar } from '../../constants/images';
 
 const mapStateToProps = ({ auth }) => ({
@@ -29,16 +29,16 @@ const enhance = compose(
   withHandlers({
     onRegister: props => async (email, displayName, password) => {
       props.toggleLoading(true);
-      const isSuccess = await props.registerWithEmailAndPassword(email, password);
+      const uid = await props.registerWithEmailAndPassword(email, password);
       props.toggleLoading(false);
-      if (isSuccess) {
+      if (uid) {
+        const userProfile = {
+          displayName,
+          photoURL: defaultUserAvatar,
+        };
+        await createUserProfile(uid, userProfile);
         await props.logIn(email, password);
       }
-      const userProfile = {
-        displayName,
-        photoURL: defaultUserAvatar,
-      };
-      updateUserProfile(userProfile);
     },
     onSignInPress: props => () => {
       props.clearError();

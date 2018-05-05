@@ -22,9 +22,9 @@ const loadImages = () => async (dispatch) => {
   try {
     await loadImgs(images);
     dispatch(imagesLoaded(true));
-  } catch (err) {
+  } catch (error) {
     dispatch(imagesLoaded(false));
-    console.log(err);
+    console.log(error);
   }
 };
 

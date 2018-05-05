@@ -37,8 +37,6 @@ const enhance = compose(
   }),
   lifecycle({
     componentWillMount() {
-      console.log(firebase.auth().currentUser);
-
       if (this.props.isLoggedIn) {
         this.props.navigation.dispatch(navigationAction);
       }

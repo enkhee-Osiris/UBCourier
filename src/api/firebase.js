@@ -29,12 +29,13 @@ export function signUpUserWithEmailAndPassword(email, password) {
 
 /**
  * update current user's profile info
- * @param {Object} options
+ * @param {Object} profile
  * {
  *   displayName: nullable string,
  *   photoURL: nullable string
  * }
  */
-export function updateUserProfile(options) {
-  return firebase.auth().currentUser.updateProfile(options);
+export function createUserProfile(uid, profile) {
+  const userRef = firebase.database().ref(`users/${uid}`);
+  return userRef.set(profile);
 }
