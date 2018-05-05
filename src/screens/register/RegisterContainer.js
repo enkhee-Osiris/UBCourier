@@ -30,7 +30,6 @@ const enhance = compose(
     onRegister: props => async (email, displayName, password) => {
       props.toggleLoading(true);
       const uid = await props.registerWithEmailAndPassword(email, password);
-      props.toggleLoading(false);
       if (uid) {
         const userProfile = {
           email,
@@ -40,6 +39,7 @@ const enhance = compose(
         await createUserProfile(uid, userProfile);
         await props.logIn(email, password);
       }
+      props.toggleLoading(false);
     },
     onSignInPress: props => () => {
       props.clearError();
