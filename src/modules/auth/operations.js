@@ -5,6 +5,7 @@ import {
   signInWithEmailPassword,
   signOut,
   signUpUserWithEmailAndPassword,
+  getUserProfile,
 } from '../../api/firebase';
 import {
   loggedIn,
@@ -15,7 +16,10 @@ import {
 
 const logIn = (email, password) => async (dispatch) => {
   await signInWithEmailPassword(email, password)
-    .then(user => dispatch(loggedIn(user)))
+    .then(async (user) => {
+      const profile = await getUserProfile(user.uid);
+      dispatch(loggedIn(profile));
+    })
     .catch(error => dispatch(errorOccured(error)));
 };
 

@@ -16,8 +16,8 @@ const withValidation = withProps(({ email, displayName, password }) => ({
     && !!password && password.length > 6
     && !!displayName && displayName.length > 5,
   emailError: !!email && email.length > 0 ? '' : 'Email must be filled',
-  displayNameError: !!displayName && displayName.length > 5 ? '' : 'Display name must be filled',
-  passwordError: !!password && password.length > 6 ? '' : 'Password must be 6 characters long',
+  displayNameError: !!displayName && displayName.length > 3 ? '' : 'Display name must be filled',
+  passwordError: !!password && password.length > 6 ? '' : 'Password must be 7 characters long',
 }));
 
 const enhance = compose(
@@ -33,6 +33,7 @@ const enhance = compose(
       props.toggleLoading(false);
       if (uid) {
         const userProfile = {
+          email,
           displayName,
           photoURL: defaultUserAvatar,
         };

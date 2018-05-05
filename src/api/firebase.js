@@ -28,14 +28,37 @@ export function signUpUserWithEmailAndPassword(email, password) {
 }
 
 /**
- * update current user's profile info
+ * update user's profile info
  * @param {Object} profile
  * {
  *   displayName: nullable string,
  *   photoURL: nullable string
  * }
  */
-export function createUserProfile(uid, profile) {
-  const userRef = firebase.database().ref(`users/${uid}`);
+export async function createUserProfile(uid, profile) {
+  const userRef = await firebase.database().ref(`users/${uid}`);
   return userRef.set(profile);
+}
+
+/**
+ * get user's profile info
+ * @param {string} uid
+ * @returns {Object} profile info
+ */
+export async function getUserProfile(uid) {
+  let email;
+  let displayName;
+  let photoURL;
+
+  const userRef = await firebase.database().ref(`users/${uid}`);
+  await userRef.once('value').then((snapshot) => {
+    ({ email, displayName, photoURL } = snapshot.val());
+  });
+
+  return {
+    email,
+    displayName,
+    photoURL,
+    uid,
+  };
 }
