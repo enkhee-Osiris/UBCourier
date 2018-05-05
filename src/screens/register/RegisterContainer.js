@@ -39,7 +39,6 @@ const enhance = compose(
         await createUserProfile(uid, userProfile);
         await props.logIn(email, password);
       }
-      props.toggleLoading(false);
     },
     onSignInPress: props => () => {
       props.clearError();

@@ -5,6 +5,7 @@ import {
   signInWithEmailPassword,
   signOut,
   signUpUserWithEmailAndPassword,
+  createUserProfile,
   getUserProfile,
 } from '../../api/firebase';
 import {
@@ -36,7 +37,15 @@ const logInWithFacebook = () => async (dispatch) => {
     const credential = facebookAuthCredential(token);
 
     await signInWithFacebookCredential(credential)
-      .then(user => dispatch(loggedIn(user)))
+      .then(async (user) => {
+        const userProfile = {
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+        };
+        await createUserProfile(user.uid, userProfile);
+        dispatch(loggedIn({ ...userProfile, uid: user.uid }));
+      })
       .catch(error => dispatch(errorOccured(error)));
   } else {
     dispatch(errorOccured({ message: 'Facebook login failed' }));

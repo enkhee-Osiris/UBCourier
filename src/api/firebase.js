@@ -4,7 +4,7 @@ import firebase from '../config/firebase';
 
 export function facebookToken() {
   return Facebook
-    .logInWithReadPermissionsAsync(FACEBOOK_APP_ID, { permissions: ['public_profile'] });
+    .logInWithReadPermissionsAsync(FACEBOOK_APP_ID, { permissions: ['public_profile', 'email'] });
 }
 
 export function facebookAuthCredential(token) {
