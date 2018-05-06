@@ -6,14 +6,13 @@ const omit = (obj, keys) => (
 
 export const insert = (state, item) => {
   const { byId = {}, ids = [] } = state;
-  const id = item.key;
 
   return {
     byId: {
       ...byId,
-      [id]: { ...item },
+      [item.id]: omit(item, ['id']),
     },
-    ids: [id, ...ids],
+    ids: [item.id, ...ids],
   };
 };
 
