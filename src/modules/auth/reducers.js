@@ -21,7 +21,6 @@ const createUser = ({
 
 const authReducer = handleActions({
   [types.LOGGED_IN]: (state, { payload }) => ({
-    ...state,
     isLoggedIn: true,
     user: createUser(payload),
     error: null,

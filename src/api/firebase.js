@@ -37,6 +37,7 @@ export function signUpUserWithEmailAndPassword(email, password) {
  */
 export async function createUserProfile(uid, profile) {
   const userRef = await firebase.database().ref(`users/${uid}`);
+
   return userRef.set(profile);
 }
 
@@ -65,6 +66,7 @@ export async function getUserProfile(uid) {
 
 export async function setUserLocation(uid, coords) {
   const locationRef = await firebase.database().ref(`locations/${uid}`);
+
   return locationRef.set({
     latitude: coords.latitude,
     longitude: coords.longitude,

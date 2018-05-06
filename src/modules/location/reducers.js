@@ -6,12 +6,16 @@ const initialState = {
   longitude: 106.9057,
 };
 
+const createLocation = ({
+  latitude,
+  longitude,
+}) => ({
+  latitude,
+  longitude,
+});
+
 const locationReducer = handleActions({
-  [types.LOCATION_UPDATED]: (state, { payload }) => ({
-    ...state,
-    latitude: payload.latitude,
-    longitude: payload.longitude,
-  }),
+  [types.LOCATION_UPDATED]: (state, { payload }) => createLocation(payload),
 }, initialState);
 
 export default locationReducer;
