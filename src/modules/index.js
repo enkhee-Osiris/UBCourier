@@ -4,6 +4,7 @@ import navigatorReducer from './navigator';
 import storageReducer from './storage';
 import authReducer from './auth';
 import locationReducer from './location';
+import postReducer from './post';
 
 const rootReducer = combineReducers({
   app: appReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   storage: storageReducer,
   auth: authReducer,
   location: locationReducer,
+  posts: postReducer,
 });
 
 export default rootReducer;

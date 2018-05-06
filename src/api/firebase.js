@@ -1,6 +1,11 @@
 import { Facebook } from 'expo';
 import { FACEBOOK_APP_ID } from '../config/local';
 import firebase from '../config/firebase';
+import { createPost } from '../modules/post/reducers';
+
+/**
+ * User
+ */
 
 export function facebookToken() {
   return Facebook
@@ -64,6 +69,10 @@ export async function getUserProfile(uid) {
   };
 }
 
+/**
+ * Location
+ */
+
 export async function setUserLocation(uid, coords) {
   const locationRef = await firebase.database().ref(`locations/${uid}`);
 
@@ -71,4 +80,41 @@ export async function setUserLocation(uid, coords) {
     latitude: coords.latitude,
     longitude: coords.longitude,
   });
+}
+
+/**
+ * Post
+ */
+
+export async function getPosts() {
+  let posts = []; // eslint-disable-line
+  const postRef = await firebase.database().ref('posts/');
+  await postRef.orderByChild('isDelivered').equalTo(true).once('value').then((snapshot) => {
+    snapshot.forEach((snap) => {
+      const post = createPost({ ...snap.val(), id: snap.key });
+      posts.push(post);
+    });
+  });
+
+  return posts;
+}
+
+export async function setPost(post) {
+  const postRef = await firebase.database().ref('posts/');
+  const newPostRef = postRef.push();
+  await newPostRef.set(post);
+
+  return newPostRef.key;
+}
+
+export async function modifyPost(id, payload) {
+  const postRef = await firebase.database().ref(`posts/${id}`);
+
+  return postRef.update(payload);
+}
+
+export async function removePost(id) {
+  const postRef = await firebase.database().ref(`posts/${id}`);
+
+  return postRef.remove();
 }
