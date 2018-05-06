@@ -62,3 +62,11 @@ export async function getUserProfile(uid) {
     uid,
   };
 }
+
+export async function setUserLocation(uid, coords) {
+  const locationRef = await firebase.database().ref(`locations/${uid}`);
+  return locationRef.set({
+    latitude: coords.latitude,
+    longitude: coords.longitude,
+  });
+}
