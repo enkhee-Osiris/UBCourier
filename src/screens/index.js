@@ -4,6 +4,7 @@ import Register from './register';
 import NoInternet from './noInternet';
 import Home from './home/HomeScreen';
 import Posts from './posts';
+import PostEditor from './postEditor';
 import Screen from './screen/ScreenScreen';
 import Settings from './settings/SettingsScreen';
 
@@ -14,6 +15,7 @@ export {
   NoInternet,
   Home,
   Posts,
+  PostEditor,
   Screen,
   Settings,
 };

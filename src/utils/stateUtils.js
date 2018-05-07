@@ -10,7 +10,7 @@ export const insert = (state, item) => {
   return {
     byId: {
       ...byId,
-      [item.id]: omit(item, ['id']),
+      [item.id]: item,
     },
     ids: [item.id, ...ids],
   };
