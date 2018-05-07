@@ -107,7 +107,7 @@ export async function setPost(post) {
   return newPostRef.key;
 }
 
-export async function modifyPost(id, payload) {
+export async function modifyPost({ id, ...payload }) {
   const postRef = await firebase.database().ref(`posts/${id}`);
 
   return postRef.update(payload);

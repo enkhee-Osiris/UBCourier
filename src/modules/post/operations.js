@@ -25,9 +25,9 @@ const createPost = payload => async (dispatch) => {
   }
 };
 
-const updatePost = (id, payload) => async (dispatch) => {
-  await modifyPost(id, payload)
-    .then(() => dispatch(postUpdated({ id, ...payload })))
+const updatePost = payload => async (dispatch) => {
+  await modifyPost(payload)
+    .then(() => dispatch(postUpdated(payload)))
     .catch(error => console.log(error));
 };
 
