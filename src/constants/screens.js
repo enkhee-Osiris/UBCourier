@@ -5,13 +5,17 @@ export default {
   HomeRoot: 'HomeRoot',
   Home: 'Home',
 
+  PostRoot: 'PostRoot',
+  Posts: 'Posts',
+  PostEditor: 'PostEditor',
+  PostDetails: 'PostDetails',
+
   SettingsRoot: 'SettingsRoot',
   Settings: 'Settings',
 
   ScreenRoot: 'ScreenRoot',
   Screen: 'Screen',
 
-  LoginRoot: 'LoginRoot',
   Auth: 'Auth',
   Login: 'Login',
   Register: 'Register',
