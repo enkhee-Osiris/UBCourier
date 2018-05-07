@@ -5,6 +5,7 @@ import NoInternet from './noInternet';
 import Home from './home/HomeScreen';
 import Posts from './posts';
 import PostEditor from './postEditor';
+import PostDetails from './postDetails';
 import Screen from './screen/ScreenScreen';
 import Settings from './settings/SettingsScreen';
 
@@ -16,6 +17,7 @@ export {
   Home,
   Posts,
   PostEditor,
+  PostDetails,
   Screen,
   Settings,
 };
