@@ -11,10 +11,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
-  loading: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: colors.white,
-  },
 });
 
 export default styles;
