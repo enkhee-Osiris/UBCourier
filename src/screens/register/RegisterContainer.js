@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { compose, withState, withHandlers, lifecycle, withProps } from 'recompose';
 import { authOperations } from '../../modules/auth';
+import { postOperations } from '../../modules/post';
 import screens from '../../constants/screens';
 import RegisterScreenView from './RegisterScreenView';
 import { createUserProfile } from '../../api/firebase';
@@ -20,30 +21,42 @@ const withValidation = withProps(({ email, displayName, password }) => ({
   passwordError: !!password && password.length > 6 ? '' : 'Password must be 7 characters long',
 }));
 
+const onRegister = ({
+  toggleLoading,
+  registerWithEmailAndPassword,
+  logIn,
+  loadPosts,
+}) => async (email, displayName, password) => {
+  toggleLoading(true);
+  const uid = await registerWithEmailAndPassword(email, password);
+  if (uid) {
+    const userProfile = {
+      email,
+      displayName,
+      photoURL: defaultUserAvatar,
+    };
+    await createUserProfile(uid, userProfile);
+    await logIn(email, password);
+    await loadPosts();
+  } else {
+    toggleLoading(false);
+  }
+};
+
+const onSignInPress = ({ clearError, navigation }) => () => {
+  clearError();
+  navigation.navigate(screens.Login);
+};
+
 const enhance = compose(
-  connect(mapStateToProps, authOperations),
+  connect(mapStateToProps, { ...authOperations, ...postOperations }),
   withState('email', 'onEmailChange', ''),
   withState('password', 'onPasswordChange', ''),
   withState('displayName', 'onDisplayNameChange', ''),
   withState('isLoading', 'toggleLoading', false),
   withHandlers({
-    onRegister: props => async (email, displayName, password) => {
-      props.toggleLoading(true);
-      const uid = await props.registerWithEmailAndPassword(email, password);
-      if (uid) {
-        const userProfile = {
-          email,
-          displayName,
-          photoURL: defaultUserAvatar,
-        };
-        await createUserProfile(uid, userProfile);
-        await props.logIn(email, password);
-      }
-    },
-    onSignInPress: props => () => {
-      props.clearError();
-      props.navigation.navigate(screens.Login);
-    },
+    onRegister,
+    onSignInPress,
   }),
   withValidation,
   lifecycle({

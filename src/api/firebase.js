@@ -89,7 +89,7 @@ export async function setUserLocation(uid, coords) {
 export async function getPosts() {
   let posts = []; // eslint-disable-line
   const postRef = await firebase.database().ref('posts/');
-  await postRef.orderByChild('isDelivered').equalTo(true).once('value').then((snapshot) => {
+  await postRef.orderByChild('isDelivered').equalTo(false).once('value').then((snapshot) => {
     snapshot.forEach((snap) => {
       const post = createPost({ ...snap.val(), id: snap.key });
       posts.push(post);

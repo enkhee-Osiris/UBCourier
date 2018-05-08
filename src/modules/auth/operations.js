@@ -15,13 +15,24 @@ import {
   clearError,
 } from './actions';
 
+/**
+ * logs in user with email password
+ * @param {string} email
+ * @param {string} password
+ * @returns {string} uid of user
+ */
 const logIn = (email, password) => async (dispatch) => {
+  let uid = null;
+
   await signInWithEmailPassword(email, password)
     .then(async (user) => {
-      const profile = await getUserProfile(user.uid);
+      ({ uid } = user);
+      const profile = await getUserProfile(uid);
       dispatch(loggedIn(profile));
     })
     .catch(error => dispatch(errorOccured(error)));
+
+  return uid;
 };
 
 const logOut = () => async (dispatch) => {
@@ -32,6 +43,7 @@ const logOut = () => async (dispatch) => {
 
 const logInWithFacebook = () => async (dispatch) => {
   const { type, token } = await facebookToken();
+  let uid = null;
 
   if (type === 'success') {
     const credential = facebookAuthCredential(token);
@@ -43,13 +55,16 @@ const logInWithFacebook = () => async (dispatch) => {
           displayName: user.displayName,
           photoURL: user.photoURL,
         };
-        await createUserProfile(user.uid, userProfile);
-        dispatch(loggedIn({ ...userProfile, uid: user.uid }));
+        ({ uid } = user);
+        await createUserProfile(uid, userProfile);
+        dispatch(loggedIn({ ...userProfile, uid }));
       })
       .catch(error => dispatch(errorOccured(error)));
   } else {
     dispatch(errorOccured({ message: 'Facebook login failed' }));
   }
+
+  return uid;
 };
 
 /**
@@ -60,6 +75,7 @@ const logInWithFacebook = () => async (dispatch) => {
  */
 const registerWithEmailAndPassword = (email, password) => async (dispatch) => {
   let uid = null;
+
   await signUpUserWithEmailAndPassword(email, password)
     .then((user) => { ({ uid } = user); })
     .catch(error => dispatch(errorOccured(error)));

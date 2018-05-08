@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { compose, withState, withHandlers, lifecycle } from 'recompose';
 import { authOperations } from '../../modules/auth';
+import { postOperations } from '../../modules/post';
 import screens from '../../constants/screens';
 import AuthScreenView from './AuthScreenView';
 
@@ -9,22 +10,37 @@ const mapStateToProps = ({ auth }) => ({
   error: auth.error,
 });
 
+const onLogInWithFacebook = ({
+  toggleLoading,
+  logInWithFacebook,
+  loadPosts,
+}) => async () => {
+  toggleLoading(true);
+  const uid = await logInWithFacebook();
+  if (uid) {
+    await loadPosts();
+  } else {
+    toggleLoading(false);
+  }
+};
+
+const onRegisterPress = ({ clearError, navigation }) => () => {
+  clearError();
+  navigation.navigate(screens.Register);
+};
+
+const onSignInPress = ({ clearError, navigation }) => () => {
+  clearError();
+  navigation.navigate(screens.Login);
+};
+
 const enhance = compose(
-  connect(mapStateToProps, authOperations),
+  connect(mapStateToProps, { ...authOperations, ...postOperations }),
   withState('isLoading', 'toggleLoading', false),
   withHandlers({
-    onLogInWithFacebook: props => async () => {
-      props.toggleLoading(true);
-      await props.logInWithFacebook();
-    },
-    onRegisterPress: props => () => {
-      props.clearError();
-      props.navigation.navigate(screens.Register);
-    },
-    onSignInPress: props => () => {
-      props.clearError();
-      props.navigation.navigate(screens.Login);
-    },
+    onLogInWithFacebook,
+    onRegisterPress,
+    onSignInPress,
   }),
   lifecycle({
     componentWillMount() {

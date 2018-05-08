@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { compose, withState, withHandlers, lifecycle, withProps } from 'recompose';
 import { authOperations } from '../../modules/auth';
+import { postOperations } from '../../modules/post';
 import screens from '../../constants/screens';
 import LoginScreenView from './LoginScreenView';
 
@@ -15,20 +16,33 @@ const withValidation = withProps(({ email, password }) => ({
   passwordError: !!password && password.length > 0 ? '' : 'Password must be filled',
 }));
 
+const onLogIn = ({
+  toggleLoading,
+  logIn,
+  loadPosts,
+}) => async (email, password) => {
+  toggleLoading(true);
+  const uid = await logIn(email, password);
+  if (uid) {
+    await loadPosts();
+  } else {
+    toggleLoading(false);
+  }
+};
+
+const onRegisterPress = ({ clearError, navigation }) => () => {
+  clearError();
+  navigation.navigate(screens.Register);
+};
+
 const enhance = compose(
-  connect(mapStateToProps, authOperations),
+  connect(mapStateToProps, { ...authOperations, ...postOperations }),
   withState('email', 'onEmailChange', ''),
   withState('password', 'onPasswordChange', ''),
   withState('isLoading', 'toggleLoading', false),
   withHandlers({
-    onLogIn: props => async (email, password) => {
-      props.toggleLoading(true);
-      await props.logIn(email, password);
-    },
-    onRegisterPress: props => () => {
-      props.clearError();
-      props.navigation.navigate(screens.Register);
-    },
+    onLogIn,
+    onRegisterPress,
   }),
   withValidation,
   lifecycle({
