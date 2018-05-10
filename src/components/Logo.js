@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import StylePropType from 'react-style-proptype';
-import logo from '../assets/icons/logo.png';
+import logo from '../assets/icons/text-logo.png';
 
 const styles = StyleSheet.create({
   logo: {
-    width: 67,
+    width: 161,
     height: 24,
   },
 });
