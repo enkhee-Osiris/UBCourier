@@ -52,6 +52,7 @@ const logInWithFacebook = () => async (dispatch) => {
       .then(async (user) => {
         const userProfile = {
           email: user.email,
+          phoneNumber: user.phoneNumber,
           displayName: user.displayName,
           photoURL: user.photoURL,
         };
