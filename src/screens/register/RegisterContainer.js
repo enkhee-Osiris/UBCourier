@@ -18,11 +18,11 @@ const withValidation = withProps(({
   displayName,
   password,
 }) => ({
-  isValid: !!email && email.length > 0
+  isValid: !!email && email.length >= 5
     && !!phoneNumber && phoneNumber.length === 8
-    && !!password && password.length > 6
+    && !!password && password.length >= 6
     && !!displayName && displayName.length > 5,
-  emailError: !!email && email.length > 0 ? '' : 'Email must be filled',
+  emailError: !!email && email.length >= 5 ? '' : 'Email must be filled',
   phoneNumberError: !!phoneNumber && phoneNumber.length === 8 ? '' : 'Phone number must be filled',
   displayNameError: !!displayName && displayName.length > 3 ? '' : 'Display name must be filled',
   passwordError: !!password && password.length >= 6 ? '' : 'Password must be atleast 6 chars',

@@ -64,7 +64,7 @@ const Login = ({
           error={passwordError}
           inputRef={(input) => { this.passTextInput = input; }}
           returnKeyType="done"
-          onSubmitEditing={() => onLogIn(email, password)}
+          onSubmitEditing={() => onLogIn()}
         />
         <Button
           loading={isLoading}
@@ -76,7 +76,7 @@ const Login = ({
           fontFamily="Montserrat-Bold"
           fontSize={fontSizes.small}
           fontWeight={fontWeights.bold}
-          onPress={() => onLogIn(email, password)}
+          onPress={() => onLogIn()}
           disabled={!isValid || isLoading}
         />
         {

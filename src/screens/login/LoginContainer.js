@@ -11,16 +11,18 @@ const mapStateToProps = ({ auth }) => ({
 });
 
 const withValidation = withProps(({ email, password }) => ({
-  isValid: !!email && !!password && email.length > 0 && password.length > 0,
-  emailError: !!email && email.length > 0 ? '' : 'Email must be filled',
-  passwordError: !!password && password.length > 0 ? '' : 'Password must be filled',
+  isValid: !!email && !!password && email.length >= 5 && password.length >= 6,
+  emailError: !!email && email.length >= 5 ? '' : 'Email must be filled',
+  passwordError: !!password && password.length >= 6 ? '' : 'Password must be filled',
 }));
 
 const onLogIn = ({
   toggleLoading,
   logIn,
   loadPosts,
-}) => async (email, password) => {
+  email,
+  password,
+}) => async () => {
   toggleLoading(true);
   const uid = await logIn(email, password);
   if (uid) {
