@@ -12,13 +12,20 @@ const mapStateToProps = ({ auth }) => ({
   error: auth.error,
 });
 
-const withValidation = withProps(({ email, displayName, password }) => ({
+const withValidation = withProps(({
+  email,
+  phoneNumber,
+  displayName,
+  password,
+}) => ({
   isValid: !!email && email.length > 0
+    && !!phoneNumber && phoneNumber.length === 8
     && !!password && password.length > 6
     && !!displayName && displayName.length > 5,
   emailError: !!email && email.length > 0 ? '' : 'Email must be filled',
+  phoneNumberError: !!phoneNumber && phoneNumber.length === 8 ? '' : 'Phone number must be filled',
   displayNameError: !!displayName && displayName.length > 3 ? '' : 'Display name must be filled',
-  passwordError: !!password && password.length > 6 ? '' : 'Password must be 7 characters long',
+  passwordError: !!password && password.length >= 6 ? '' : 'Password must be atleast 6 chars',
 }));
 
 const onRegister = ({
@@ -26,12 +33,17 @@ const onRegister = ({
   registerWithEmailAndPassword,
   logIn,
   loadPosts,
-}) => async (email, displayName, password) => {
+  email,
+  phoneNumber,
+  displayName,
+  password,
+}) => async () => {
   toggleLoading(true);
   const uid = await registerWithEmailAndPassword(email, password);
   if (uid) {
     const userProfile = {
       email,
+      phoneNumber,
       displayName,
       photoURL: defaultUserAvatar,
     };
@@ -51,6 +63,7 @@ const onSignInPress = ({ clearError, navigation }) => () => {
 const enhance = compose(
   connect(mapStateToProps, { ...authOperations, ...postOperations }),
   withState('email', 'onEmailChange', ''),
+  withState('phoneNumber', 'onPhoneNumberChange', ''),
   withState('password', 'onPasswordChange', ''),
   withState('displayName', 'onDisplayNameChange', ''),
   withState('isLoading', 'toggleLoading', false),

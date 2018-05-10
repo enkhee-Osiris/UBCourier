@@ -13,13 +13,16 @@ import s from './styles';
 const Register = ({
   navigation,
   email,
+  phoneNumber,
   displayName,
   password,
   emailError,
+  phoneNumberError,
   displayNameError,
   passwordError,
   error,
   onEmailChange,
+  onPhoneNumberChange,
   onDisplayNameChange,
   onPasswordChange,
   onSignInPress,
@@ -42,6 +45,7 @@ const Register = ({
       <View style={s.formContainer}>
         <Input
           placeholder="Email"
+          keyboardType="email-address"
           value={email}
           icon={{ name: 'ios-mail-outline' }}
           onChangeText={onEmailChange}
@@ -52,7 +56,23 @@ const Register = ({
           error={emailError}
           returnKeyType="next"
           blurOnSubmit={false}
+          onSubmitEditing={() => this.phoneTextInput.focus()}
+        />
+        <Input
+          placeholder="(+976) 88******"
+          keyboardType="phone-pad"
+          value={phoneNumber}
+          icon={{ name: 'ios-call-outline' }}
+          onChangeText={onPhoneNumberChange}
+          secondContainerStyle={s.inputContainer}
+          containerStyleFocus={s.inputContainerFocus}
+          isNotValidStyle={null}
+          style={s.inputStyle}
+          error={phoneNumberError}
+          returnKeyType="next"
+          blurOnSubmit={false}
           onSubmitEditing={() => this.nameTextInput.focus()}
+          inputRef={(input) => { this.phoneTextInput = input; }}
         />
         <Input
           placeholder="Display Name"
@@ -82,7 +102,7 @@ const Register = ({
           error={passwordError}
           inputRef={(input) => { this.passTextInput = input; }}
           returnKeyType="done"
-          onSubmitEditing={() => onRegister(email, displayName, password)}
+          onSubmitEditing={() => onRegister()}
         />
         <Button
           loading={isLoading}
@@ -94,7 +114,7 @@ const Register = ({
           fontFamily="Montserrat-Bold"
           fontSize={fontSizes.small}
           fontWeight={fontWeights.bold}
-          onPress={() => onRegister(email, displayName, password)}
+          onPress={() => onRegister()}
           disabled={!isValid || isLoading}
         />
         {
@@ -123,13 +143,16 @@ Register.navigationOptions = {
 Register.propTypes = {
   navigation: PropTypes.object,
   email: PropTypes.string,
+  phoneNumber: PropTypes.string,
   displayName: PropTypes.string,
   password: PropTypes.string,
   error: PropTypes.object,
   emailError: PropTypes.string,
+  phoneNumberError: PropTypes.string,
   displayNameError: PropTypes.string,
   passwordError: PropTypes.string,
   onEmailChange: PropTypes.func,
+  onPhoneNumberChange: PropTypes.func,
   onDisplayNameChange: PropTypes.func,
   onPasswordChange: PropTypes.func,
   onSignInPress: PropTypes.func,
