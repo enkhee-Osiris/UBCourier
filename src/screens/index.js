@@ -2,7 +2,7 @@ import Login from './login';
 import Auth from './auth';
 import Register from './register';
 import NoInternet from './noInternet';
-import Home from './home/HomeScreen';
+import Home from './home';
 import Posts from './posts';
 import PostEditor from './postEditor';
 import PostDetails from './postDetails';

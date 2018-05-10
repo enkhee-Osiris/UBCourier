@@ -39,6 +39,7 @@ const Login = ({
       <View style={s.formContainer}>
         <Input
           placeholder="Email"
+          keyboardType="email-address"
           value={email}
           icon={{ name: 'ios-mail-outline' }}
           onChangeText={onEmailChange}
