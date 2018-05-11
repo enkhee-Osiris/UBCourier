@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   inputStyle: fontStyle({
     marginLeft: 10,
-    color: colors.drakGrey,
+    color: colors.grey,
     fontSize: fontSizes.medium,
   }),
   error: fontStyle({

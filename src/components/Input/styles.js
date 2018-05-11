@@ -14,7 +14,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     height: verticalIndent * 2.8,
-    paddingLeft: indent,
     borderColor: colors.greyDarker,
     borderWidth: 1,
     borderRadius: 4,

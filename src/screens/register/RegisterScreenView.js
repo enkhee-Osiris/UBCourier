@@ -34,6 +34,7 @@ const Register = ({
     <View style={s.headerContainer}>
       <NavigationButton
         backOnSuccess
+        tintColor={colors.grey}
         containerStyle={s.backButton}
         navigation={navigation}
         iconName="ios-arrow-round-back"

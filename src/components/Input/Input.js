@@ -44,7 +44,7 @@ const Input = ({
         <Icon
           type="ionicon"
           underlayColor="transparent"
-          style={s.icon}
+          containerStyle={s.icon}
           color={isFocus ? isFocusColor : colors.greyDarker}
           {...icon}
         />
@@ -65,7 +65,7 @@ const Input = ({
         <Icon
           type="ionicon"
           underlayColor="transparent"
-          style={[s.icon, rightIconStyle]}
+          containerStyle={[s.icon, rightIconStyle]}
           color={isFocus ? isFocusColor : colors.greyDarker}
           {...iconRight}
         />

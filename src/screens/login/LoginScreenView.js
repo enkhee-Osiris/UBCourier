@@ -30,6 +30,7 @@ const Login = ({
         backOnSuccess
         containerStyle={s.backButton}
         navigation={navigation}
+        tintColor={colors.grey}
         iconName="ios-arrow-round-back"
         size={50}
       />
