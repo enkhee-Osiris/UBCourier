@@ -1,6 +1,8 @@
 import React from 'react';
 import { MapView } from 'expo';
 import PropTypes from 'prop-types';
+import { NavigationButton } from '../../components';
+import screens from '../../constants/screens';
 import s from './styles';
 import mapStyle from '../../styles/mapStyle';
 
@@ -20,8 +22,12 @@ Home.propTypes = {
   location: PropTypes.object,
 };
 
-Home.navigationOptions = {
+Home.navigationOptions = ({ navigation }) => ({
   title: 'Home',
-};
+  headerRight: <NavigationButton
+    iconName="ios-add-outline"
+    onPress={() => navigation.navigate(screens.PostEditor)}
+  />,
+});
 
 export default Home;
