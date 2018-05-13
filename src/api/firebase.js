@@ -1,4 +1,5 @@
 import { Facebook } from 'expo';
+import uuid from 'uuid';
 import { FACEBOOK_APP_ID } from '../config/local';
 import firebase from '../config/firebase';
 import { createPost } from '../modules/post/reducers';
@@ -31,6 +32,23 @@ export function signOut() {
 export function signUpUserWithEmailAndPassword(email, password) {
   return firebase.auth().createUserWithEmailAndPassword(email, password);
 }
+
+export async function uploadImage(uri) {
+  let downloadURL = '';
+  const response = await fetch(uri);
+  const blob = await response.blob();
+  const ref = firebase
+    .storage()
+    .ref('posts/')
+    .child(uuid.v4());
+
+  await ref.put(blob).then((snapshot) => {
+    ({ downloadURL } = snapshot);
+  });
+
+  return downloadURL;
+}
+
 
 /**
  * update user's profile info
