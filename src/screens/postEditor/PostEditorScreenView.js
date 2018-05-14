@@ -1,32 +1,138 @@
 import React from 'react';
+import { MapView } from 'expo';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
-import { NavigationButton } from '../../components';
+import { ScrollView, Image, View, Text } from 'react-native';
+import { NavigationButton, Input, TouchableItem } from '../../components';
 import { colors } from '../../styles';
+import appStyles from '../../styles/AppStyles';
 import s from './styles';
 
 const PostEditor = ({
-  post,
   name,
   weight,
+  volume,
+  price,
+  image,
+  targetLocation,
+  delivererId,
+  onImagePick,
   onNameChange,
   onWeightChange,
+  onVolumeChange,
+  onPriceChange,
+  setLocation,
   isValid,
   onSubmit,
 }) => (
-  <View style={s.root}>
-    <Text>Post editor</Text>
-  </View>
+  <ScrollView
+    style={[s.root, appStyles.containerStyle]}
+    keyboardShouldPersistTaps="never"
+  >
+    <TouchableItem
+      style={s.imagePickContainer}
+      onPress={() => onImagePick()}
+    >
+      <Image
+        style={s.imagePick}
+        source={image}
+      />
+    </TouchableItem>
+    <Input
+      label="NAME"
+      labelStyle={s.label}
+      value={name}
+      iconRight={{ name: 'ios-mail-outline' }}
+      onChangeText={onNameChange}
+      secondContainerStyle={s.inputContainer}
+      containerStyleFocus={s.inputContainerFocus}
+      isNotValidStyle={null}
+      style={s.inputStyle}
+      returnKeyType="next"
+      blurOnSubmit={false}
+      onSubmitEditing={() => this.weightTextInput.focus()}
+    />
+    <Input
+      label="WEIGHT"
+      labelStyle={s.label}
+      keyboardType="numeric"
+      value={weight}
+      iconRight={{ name: 'ios-speedometer-outline' }}
+      onChangeText={onWeightChange}
+      secondContainerStyle={s.inputContainer}
+      containerStyleFocus={s.inputContainerFocus}
+      isNotValidStyle={null}
+      style={s.inputStyle}
+      returnKeyType="next"
+      blurOnSubmit={false}
+      onSubmitEditing={() => this.volumeTextInput.focus()}
+      inputRef={(input) => { this.weightTextInput = input; }}
+    />
+    <Input
+      label="VOLUME"
+      labelStyle={s.label}
+      keyboardType="numeric"
+      value={volume}
+      iconRight={{ name: 'ios-cube-outline' }}
+      onChangeText={onVolumeChange}
+      secondContainerStyle={s.inputContainer}
+      containerStyleFocus={s.inputContainerFocus}
+      isNotValidStyle={null}
+      style={s.inputStyle}
+      returnKeyType="next"
+      blurOnSubmit={false}
+      onSubmitEditing={() => this.priceTextInput.focus()}
+      inputRef={(input) => { this.volumeTextInput = input; }}
+    />
+    <Input
+      label="PRICE"
+      labelStyle={s.label}
+      keyboardType="numeric"
+      value={price}
+      iconRight={{ name: 'ios-cash-outline' }}
+      onChangeText={onPriceChange}
+      secondContainerStyle={s.inputContainer}
+      containerStyleFocus={s.inputContainerFocus}
+      isNotValidStyle={null}
+      style={s.inputStyle}
+      blurOnSubmit={false}
+      inputRef={(input) => { this.priceTextInput = input; }}
+    />
+    <Text style={s.label}>TARGET LOCATION</Text>
+    <View style={s.mapContainer}>
+      <MapView
+        style={s.map}
+        initialRegion={{
+          ...targetLocation,
+          latitudeDelta: 0.02,
+          longitudeDelta: 0.013,
+        }}
+      >
+        <MapView.Marker
+          coordinate={targetLocation}
+          onDragEnd={event => setLocation(event.nativeEvent.coordinate)}
+          draggable
+        />
+      </MapView>
+    </View>
+  </ScrollView>
 );
 
 PostEditor.propTypes = {
-  post: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   name: PropTypes.string,
   weight: PropTypes.string,
+  volume: PropTypes.string,
+  price: PropTypes.string,
+  delivererId: PropTypes.string,
+  onImagePick: PropTypes.func,
   onNameChange: PropTypes.func,
   onWeightChange: PropTypes.func,
+  onVolumeChange: PropTypes.func,
+  onPriceChange: PropTypes.func,
   isValid: PropTypes.bool,
   onSubmit: PropTypes.func,
+  image: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
+  targetLocation: PropTypes.object,
+  setLocation: PropTypes.func,
 };
 
 PostEditor.navigationOptions = ({ navigation }) => ({
@@ -34,8 +140,12 @@ PostEditor.navigationOptions = ({ navigation }) => ({
     iconName="ios-arrow-round-back"
     onPress={() => navigation.goBack()}
   />,
+  headerRight: <NavigationButton
+    iconName="ios-trash-outline"
+    tintColor={colors.red}
+    onPress={() => console.log('delete')}
+  />,
   headerTitle: navigation.getParam('post') ? 'Edit post' : 'New post',
-  // TODO add delete button
 });
 
 export default PostEditor;
