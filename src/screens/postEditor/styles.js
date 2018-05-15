@@ -48,12 +48,34 @@ const styles = StyleSheet.create({
     fontSize: fontSizes.medium,
   }),
   mapContainer: {
-    marginVertical: 20,
+    marginTop: 20,
     width: '100%',
     height: 300,
   },
   map: {
     flex: 1,
+  },
+  saveButtonContainer: {
+    marginLeft: 0,
+    marginRight: 0,
+    width: '100%',
+    height: 45,
+    marginVertical: 20,
+  },
+  saveButtonTitle: fontStyle({
+    fontWeight: fontWeights.bold,
+    fontSize: fontSizes.verySmall,
+    color: colors.greyDarker,
+  }),
+  saveButton: {
+    backgroundColor: colors.transparent,
+    borderColor: colors.green,
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  saveButtonDisabled: {
+    backgroundColor: colors.lightGrey,
+    borderColor: colors.lightGrey,
   },
 });
 

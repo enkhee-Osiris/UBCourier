@@ -7,7 +7,6 @@ import {
   withState,
   withHandlers,
   hoistStatics,
-  lifecycle,
 } from 'recompose';
 import { uploadImage } from '../../api/firebase';
 import { postOperations } from '../../modules/post';
@@ -27,8 +26,18 @@ const withPost = withProps(({ navigation }) => ({
   post: navigation.getParam('post', false),
 }));
 
-const withValidation = withProps(({ name }) => ({
-  isValid: !!name && name.length > 0,
+const withValidation = withProps(({
+  name,
+  weight,
+  volume,
+  price,
+  imageURL,
+}) => ({
+  isValid: !!name && name.length > 0
+    && !!weight && weight.length > 0
+    && !!volume && volume.length > 0
+    && !!price && price.length > 0
+    && !!imageURL,
 }));
 
 const withSubmitEvent = withProps(({ post, createPost, updatePost }) => ({
@@ -52,24 +61,27 @@ const onSubmit = ({
   submit,
   post,
   navigation,
+  setLoading,
   ...props
-}) => () => {
+}) => async () => {
+  setLoading(true);
   Keyboard.dismiss();
   const editedProps =
     pick(['name', 'weight', 'volume', 'price', 'imageURL',
       'currentLocation', 'targetLocation', 'isDelivered', 'userId'], props);
   const propsToSubmit = post ? { id: post.id, ...editedProps } : editedProps;
-
-  console.log(propsToSubmit);
-
-  // submit(propsToSubmit);
-  // navigation.goBack();
+  // Creates post
+  await submit(propsToSubmit);
+  // Going back to previous screen
+  navigation.goBack();
+  setLoading(false);
 };
 
 const enhance = compose(
   connect(mapStateToProps, postOperations),
   withPost,
   withSubmitEvent,
+  withState('isLoading', 'setLoading', false),
   withState('name', 'onNameChange', ({ post }) => post.name),
   withState('weight', 'onWeightChange', ({ post }) => post.weight),
   withState('volume', 'onVolumeChange', ({ post }) => post.volume),
@@ -81,7 +93,7 @@ const enhance = compose(
   withState('targetLocation', 'setLocation', ({ post, currentLocation }) => (
     post.targetLocation || currentLocation
   )),
-  withProps(({ post, auth, location }) => ({
+  withProps(({ post, auth }) => ({
     isDelivered: post.isDelivered || false,
     delivererId: post.delivererId,
     userId: auth.user.uid,
@@ -89,14 +101,6 @@ const enhance = compose(
   withHandlers({
     onImagePick,
     onSubmit,
-  }),
-  lifecycle({
-    componentWillMount() {
-      console.log(this.props);
-    },
-    componentDidUpdate() {
-      console.log(this.props);
-    },
   }),
   withValidation,
 );

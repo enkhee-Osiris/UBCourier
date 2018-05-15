@@ -1,7 +1,8 @@
 import React from 'react';
 import { MapView } from 'expo';
-import PropTypes from 'prop-types';
 import { ScrollView, Image, View, Text } from 'react-native';
+import { Button } from 'react-native-elements';
+import PropTypes from 'prop-types';
 import { NavigationButton, Input, TouchableItem } from '../../components';
 import { colors } from '../../styles';
 import appStyles from '../../styles/AppStyles';
@@ -22,6 +23,7 @@ const PostEditor = ({
   onPriceChange,
   setLocation,
   isValid,
+  isLoading,
   onSubmit,
 }) => (
   <ScrollView
@@ -52,7 +54,7 @@ const PostEditor = ({
       onSubmitEditing={() => this.weightTextInput.focus()}
     />
     <Input
-      label="WEIGHT"
+      label="WEIGHT (gr)"
       labelStyle={s.label}
       keyboardType="numeric"
       value={weight}
@@ -68,7 +70,7 @@ const PostEditor = ({
       inputRef={(input) => { this.weightTextInput = input; }}
     />
     <Input
-      label="VOLUME"
+      label="VOLUME (cm3)"
       labelStyle={s.label}
       keyboardType="numeric"
       value={volume}
@@ -84,7 +86,7 @@ const PostEditor = ({
       inputRef={(input) => { this.volumeTextInput = input; }}
     />
     <Input
-      label="PRICE"
+      label="PRICE (₮)"
       labelStyle={s.label}
       keyboardType="numeric"
       value={price}
@@ -114,6 +116,17 @@ const PostEditor = ({
         />
       </MapView>
     </View>
+    <Button
+      loading={isLoading}
+      loadingProps={{ size: 'small', color: colors.greyDarker }}
+      title="Save"
+      buttonStyle={s.saveButton}
+      textStyle={s.saveButtonTitle}
+      disabledStyle={s.saveButtonDisabled}
+      containerViewStyle={s.saveButtonContainer}
+      onPress={() => onSubmit()}
+      disabled={!isValid || isLoading}
+    />
   </ScrollView>
 );
 
@@ -129,6 +142,7 @@ PostEditor.propTypes = {
   onVolumeChange: PropTypes.func,
   onPriceChange: PropTypes.func,
   isValid: PropTypes.bool,
+  isLoading: PropTypes.bool,
   onSubmit: PropTypes.func,
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
   targetLocation: PropTypes.object,
