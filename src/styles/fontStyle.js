@@ -16,7 +16,7 @@ const fontStyle = (styles = {}) => {
 
   return ({
     fontFamily: family,
-    'fontWeight': fontWeight, // eslint-disable-line
+    fontWeight,
     ...styles,
   });
 };
