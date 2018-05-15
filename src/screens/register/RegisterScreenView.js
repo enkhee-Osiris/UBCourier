@@ -110,11 +110,9 @@ const Register = ({
           loadingProps={{ size: 'small', color: colors.greyDarker }}
           title="Register"
           buttonStyle={s.registerButton}
+          textStyle={s.registerButtonTitle}
+          disabledStyle={s.registerButtonDisabled}
           containerViewStyle={s.registerButtonContainer}
-          color={colors.greyDarker}
-          fontFamily="Montserrat-Bold"
-          fontSize={fontSizes.small}
-          fontWeight={fontWeights.bold}
           onPress={() => onRegister()}
           disabled={!isValid || isLoading}
         />

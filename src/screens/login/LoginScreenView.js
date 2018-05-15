@@ -73,11 +73,9 @@ const Login = ({
           loadingProps={{ size: 'small', color: colors.greyDarker }}
           title="Sign In"
           buttonStyle={s.signInButton}
+          textStyle={s.signInButtonTitle}
+          disabledStyle={s.signInButtonDisabled}
           containerViewStyle={s.signInButtonContainer}
-          color={colors.greyDarker}
-          fontFamily="Montserrat-Bold"
-          fontSize={fontSizes.small}
-          fontWeight={fontWeights.bold}
           onPress={() => onLogIn()}
           disabled={!isValid || isLoading}
         />

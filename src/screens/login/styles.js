@@ -94,6 +94,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
   },
+  signInButtonTitle: fontStyle({
+    fontWeight: fontWeights.bold,
+    fontSize: fontSizes.verySmall,
+    color: colors.greyDarker,
+  }),
+  signInButtonDisabled: {
+    backgroundColor: colors.lightGrey,
+    borderColor: colors.lightGrey,
+  },
 });
 
 export default styles;

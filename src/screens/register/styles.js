@@ -94,6 +94,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
   },
+  registerButtonTitle: fontStyle({
+    fontWeight: fontWeights.bold,
+    fontSize: fontSizes.verySmall,
+    color: colors.greyDarker,
+  }),
+  registerButtonDisabled: {
+    backgroundColor: colors.lightGrey,
+    borderColor: colors.lightGrey,
+  },
 });
 
 export default styles;
