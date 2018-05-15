@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { compose, withState, withHandlers, lifecycle } from 'recompose';
 import { authOperations } from '../../modules/auth';
 import { postOperations } from '../../modules/posts';
+import { userOperations } from '../../modules/users';
 import screens from '../../constants/screens';
 import AuthScreenView from './AuthScreenView';
 
@@ -14,11 +15,13 @@ const onLogInWithFacebook = ({
   toggleLoading,
   logInWithFacebook,
   loadPosts,
+  loadUsers,
 }) => async () => {
   toggleLoading(true);
   const uid = await logInWithFacebook();
   if (uid) {
     await loadPosts();
+    await loadUsers();
   } else {
     toggleLoading(false);
   }
@@ -35,7 +38,7 @@ const onSignInPress = ({ clearError, navigation }) => () => {
 };
 
 const enhance = compose(
-  connect(mapStateToProps, { ...authOperations, ...postOperations }),
+  connect(mapStateToProps, { ...authOperations, ...postOperations, ...userOperations }),
   withState('isLoading', 'toggleLoading', false),
   withHandlers({
     onLogInWithFacebook,

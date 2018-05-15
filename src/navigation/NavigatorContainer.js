@@ -3,6 +3,7 @@ import { Location, Permissions } from 'expo';
 import { compose, withState, withHandlers, lifecycle } from 'recompose';
 import { locationOperations } from '../modules/location';
 import { postOperations } from '../modules/posts';
+import { userOperations } from '../modules/users';
 import NavigatorView from './NavigatorView';
 
 const mapStateToProps = ({
@@ -38,6 +39,10 @@ const loadPosts = ({ dispatch }) => async () => {
   await dispatch(postOperations.loadPosts());
 };
 
+const loadUsers = ({ dispatch }) => async () => {
+  await dispatch(userOperations.loadUsers());
+};
+
 const enhance = compose(
   connect(mapStateToProps),
   withState('isLocationListening', 'toggleLocationListen', false),
@@ -45,6 +50,7 @@ const enhance = compose(
     askPermissions,
     listenLocation,
     loadPosts,
+    loadUsers,
   }),
   lifecycle({
     componentWillMount() {
@@ -52,6 +58,7 @@ const enhance = compose(
         this.props.askPermissions();
         this.props.listenLocation();
         this.props.loadPosts();
+        this.props.loadUsers();
       }
     },
     componentDidUpdate() {

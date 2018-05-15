@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { compose, withState, withHandlers, lifecycle, withProps } from 'recompose';
 import { authOperations } from '../../modules/auth';
 import { postOperations } from '../../modules/posts';
+import { userOperations } from '../../modules/users';
 import screens from '../../constants/screens';
 import LoginScreenView from './LoginScreenView';
 
@@ -20,6 +21,7 @@ const onLogIn = ({
   toggleLoading,
   logIn,
   loadPosts,
+  loadUsers,
   email,
   password,
 }) => async () => {
@@ -27,6 +29,7 @@ const onLogIn = ({
   const uid = await logIn(email, password);
   if (uid) {
     await loadPosts();
+    await loadUsers();
   } else {
     toggleLoading(false);
   }
@@ -38,7 +41,7 @@ const onRegisterPress = ({ clearError, navigation }) => () => {
 };
 
 const enhance = compose(
-  connect(mapStateToProps, { ...authOperations, ...postOperations }),
+  connect(mapStateToProps, { ...authOperations, ...postOperations, ...userOperations }),
   withState('email', 'onEmailChange', ''),
   withState('password', 'onPasswordChange', ''),
   withState('isLoading', 'toggleLoading', false),

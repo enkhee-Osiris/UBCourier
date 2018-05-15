@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { compose, withState, withHandlers, lifecycle, withProps } from 'recompose';
 import { authOperations } from '../../modules/auth';
 import { postOperations } from '../../modules/posts';
+import { userOperations } from '../../modules/users';
 import screens from '../../constants/screens';
 import RegisterScreenView from './RegisterScreenView';
 import { createUserProfile } from '../../api/firebase';
@@ -33,6 +34,7 @@ const onRegister = ({
   registerWithEmailAndPassword,
   logIn,
   loadPosts,
+  loadUsers,
   email,
   phoneNumber,
   displayName,
@@ -50,6 +52,7 @@ const onRegister = ({
     await createUserProfile(uid, userProfile);
     await logIn(email, password);
     await loadPosts();
+    await loadUsers();
   } else {
     toggleLoading(false);
   }
@@ -61,7 +64,7 @@ const onSignInPress = ({ clearError, navigation }) => () => {
 };
 
 const enhance = compose(
-  connect(mapStateToProps, { ...authOperations, ...postOperations }),
+  connect(mapStateToProps, { ...authOperations, ...postOperations, ...userOperations }),
   withState('email', 'onEmailChange', ''),
   withState('phoneNumber', 'onPhoneNumberChange', ''),
   withState('password', 'onPasswordChange', ''),
