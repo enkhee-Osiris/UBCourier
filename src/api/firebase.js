@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import { FACEBOOK_APP_ID } from '../config/local';
 import firebase from '../config/firebase';
 import { createPost } from '../modules/posts/reducers';
+import { createUser } from '../modules/users/reducers';
 
 /**
  * User
@@ -99,6 +100,24 @@ export async function setUserLocation(uid, coords) {
     longitude: coords.longitude,
   });
 }
+
+/**
+ * Users
+ */
+
+export async function getUsers() {
+  const users = [];
+  const usersRef = await firebase.database().ref('users/');
+  await usersRef.once('value').then((snapshot) => {
+    snapshot.forEach((snap) => {
+      const post = createUser({ ...snap.val(), id: snap.key });
+      users.push(post);
+    });
+  });
+
+  return users;
+}
+
 
 /**
  * Post

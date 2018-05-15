@@ -2,8 +2,7 @@ import { handleActions } from 'redux-actions';
 import types from './types';
 import { insert, insertAll, update, remove } from '../../utils/stateUtils';
 
-const initialState = {
-};
+const initialState = {};
 
 export const createPost = ({
   id,
