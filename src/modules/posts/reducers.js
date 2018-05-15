@@ -9,10 +9,26 @@ export const createPost = ({
   id,
   name,
   weight,
+  volume,
+  price,
+  imageURL,
+  userId,
+  currentLocation,
+  targetLocation,
+  isDelivered,
+  delivererId,
 }) => ({
   id,
   name,
   weight,
+  volume,
+  price,
+  imageURL,
+  userId,
+  currentLocation,
+  targetLocation,
+  isDelivered,
+  delivererId,
 });
 
 const postReducer = handleActions({

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { Location, Permissions } from 'expo';
 import { compose, withState, withHandlers, lifecycle } from 'recompose';
 import { locationOperations } from '../modules/location';
-import { postOperations } from '../modules/post';
+import { postOperations } from '../modules/posts';
 import NavigatorView from './NavigatorView';
 
 const mapStateToProps = ({

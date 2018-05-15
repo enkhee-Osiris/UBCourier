@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { compose, withState, withHandlers, lifecycle } from 'recompose';
 import { authOperations } from '../../modules/auth';
-import { postOperations } from '../../modules/post';
+import { postOperations } from '../../modules/posts';
 import screens from '../../constants/screens';
 import AuthScreenView from './AuthScreenView';
 

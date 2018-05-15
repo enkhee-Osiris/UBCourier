@@ -7,7 +7,7 @@ import {
   hoistStatics,
   lifecycle,
 } from 'recompose';
-import { postOperations } from '../../modules/post';
+import { postOperations } from '../../modules/posts';
 import PostDetailsScreenView from './PostDetailsScreenView';
 
 const withPost = withProps(({ navigation }) => ({

@@ -2,7 +2,7 @@ import { Facebook } from 'expo';
 import uuid from 'uuid';
 import { FACEBOOK_APP_ID } from '../config/local';
 import firebase from '../config/firebase';
-import { createPost } from '../modules/post/reducers';
+import { createPost } from '../modules/posts/reducers';
 
 /**
  * User
@@ -105,7 +105,7 @@ export async function setUserLocation(uid, coords) {
  */
 
 export async function getPosts() {
-  let posts = []; // eslint-disable-line
+  const posts = [];
   const postRef = await firebase.database().ref('posts/');
   await postRef.orderByChild('isDelivered').equalTo(false).once('value').then((snapshot) => {
     snapshot.forEach((snap) => {

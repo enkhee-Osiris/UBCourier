@@ -9,7 +9,7 @@ import {
   hoistStatics,
 } from 'recompose';
 import { uploadImage } from '../../api/firebase';
-import { postOperations } from '../../modules/post';
+import { postOperations } from '../../modules/posts';
 import PostEditorScreenView from './PostEditorScreenView';
 import imagePickIcon from '../../assets/icons/image-pick.png';
 
