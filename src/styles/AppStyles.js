@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     paddingRight: doubleIndent,
   },
   formInputStyle: {
-    color: colors.primaryText,
+    color: colors.primary,
   },
   headerIconStyle: {
     fontSize: 30,

@@ -10,6 +10,7 @@ import s from './styles';
 const onNavigate = (nav, screen, params) => () => nav.navigate(screen, params);
 
 const Posts = ({
+  navigation,
   posts,
   onPress,
 }) => {
@@ -18,6 +19,7 @@ const Posts = ({
   /* eslint-disable react/prop-types */
   const _renderItem = ({ item }) => (
     <PostItem
+      navigation={navigation}
       userId={item.userId}
       name={item.name}
       weight={item.weight}
@@ -41,16 +43,17 @@ const Posts = ({
   );
 };
 
-Posts.propTypes = {
-  posts: PropTypes.array,
-  onPress: PropTypes.func,
-};
-
 Posts.navigationOptions = ({ navigation }) => ({
   headerRight: <NavigationButton
     iconName="ios-add-outline"
     onPress={onNavigate(navigation, screens.PostEditor)}
   />,
 });
+
+Posts.propTypes = {
+  navigation: PropTypes.object,
+  posts: PropTypes.array,
+  onPress: PropTypes.func,
+};
 
 export default Posts;

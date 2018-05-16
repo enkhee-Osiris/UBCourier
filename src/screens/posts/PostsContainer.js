@@ -16,7 +16,7 @@ const enhance = compose(
   connect(mapStateToProps),
   withHandlers({
     onPress: props => (item) => {
-      props.navigation.navigate(screens.PostDetail, { item });
+      props.navigation.navigate(screens.PostDetails, { item });
     },
   }),
 );
