@@ -1,5 +1,5 @@
 /* eslint-disable */
-export const defaultUserAvatar = 'https://firebasestorage.googleapis.com/v0/b/ubcourier-001.appspot.com/o/default_avatar.png?alt=media&token=3d59ed33-6630-4ff3-85b5-4ce355bd23f7';
+export const defaultUserAvatar = 'https://firebasestorage.googleapis.com/v0/b/ubcourier-001.appspot.com/o/default_useravatar.jpg?alt=media&token=dec94fd3-82dc-40f4-a3ec-9893bb44aea8';
 
 export default [
   require('../assets/icons/splash.png'),
