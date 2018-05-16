@@ -5,6 +5,7 @@ import { NavigationButton } from '../../components';
 import { PostItem } from './components';
 import screens from '../../constants/screens';
 import appStyles from '../../styles/AppStyles';
+import { colors } from '../../styles';
 import s from './styles';
 
 const onNavigate = (nav, screen, params) => () => nav.navigate(screen, params);
@@ -15,6 +16,15 @@ const Posts = ({
   onPress,
 }) => {
   const _keyExtractor = item => item.id;
+
+  const getStatus = ({ isDelivered, delivererId }) => {
+    if (isDelivered) {
+      return { color: colors.blue, message: 'Delivered' };
+    } else if (delivererId) {
+      return { color: colors.green, message: 'Delivering' };
+    }
+    return { color: colors.red, message: 'Waiting' };
+  };
 
   /* eslint-disable react/prop-types */
   const _renderItem = ({ item }) => (
@@ -27,7 +37,7 @@ const Posts = ({
       price={item.price}
       image={item.imageURL}
       onPress={() => onPress(item)}
-      status={item.isDelivered && !!item.delivererId}
+      status={getStatus(item)}
     />
   );
 
