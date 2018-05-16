@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 
 const getPostsIds = posts => posts.ids || [];
 const getPostsEntities = posts => posts.byId || {};
-const getUidForFiltering = uid => uid;
+const getUidForFiltering = (_, uid) => uid;
 
 export const getUserPosts = createSelector(
   [

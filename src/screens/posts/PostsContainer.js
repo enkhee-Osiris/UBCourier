@@ -5,10 +5,11 @@ import {
   hoistStatics,
 } from 'recompose';
 import screens from '../../constants/screens';
+import { getUserPosts } from '../../modules/posts/selectors';
 import PostsScreenView from './PostsScreenView';
 
-const mapStateToProps = ({ posts }) => ({
-  posts,
+const mapStateToProps = ({ posts, auth }) => ({
+  posts: getUserPosts(posts, auth.user.uid),
 });
 
 const enhance = compose(
