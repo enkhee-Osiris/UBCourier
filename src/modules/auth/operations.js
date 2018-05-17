@@ -24,13 +24,17 @@ import {
 const logIn = (email, password) => async (dispatch) => {
   let uid = null;
 
-  await signInWithEmailPassword(email, password)
-    .then(async (user) => {
-      ({ uid } = user);
-      const profile = await getUserProfile(uid);
-      dispatch(loggedIn(profile));
-    })
-    .catch(error => dispatch(errorOccured(error)));
+  try {
+    await signInWithEmailPassword(email, password)
+      .then(async (user) => {
+        ({ uid } = user);
+        const profile = await getUserProfile(uid);
+        dispatch(loggedIn(profile));
+      })
+      .catch(error => dispatch(errorOccured(error)));
+  } catch (e) {
+    console.log(e);
+  }
 
   return uid;
 };
