@@ -5,6 +5,7 @@ import { Button } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import { NavigationButton, Input, TouchableItem } from '../../components';
 import { colors } from '../../styles';
+import mapStyle from '../../styles/mapStyle';
 import appStyles from '../../styles/AppStyles';
 import s from './styles';
 
@@ -103,6 +104,7 @@ const PostEditor = ({
     <View style={s.mapContainer}>
       <MapView
         style={s.map}
+        customMapStyle={mapStyle}
         initialRegion={{
           ...targetLocation,
           latitudeDelta: 0.02,

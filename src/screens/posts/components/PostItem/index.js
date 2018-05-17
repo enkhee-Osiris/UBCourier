@@ -11,6 +11,7 @@ const mapStateToProps = ({ users }) => ({
 const enhance = compose(
   connect(mapStateToProps),
   withProps(({ usersEntities, userId }) => ({
+    // TODO this will throw exception
     userDisplayName: usersEntities[userId].displayName || 'Account deleted',
     userPhotoURL: usersEntities[userId].photoURL || defaultUserAvatar,
   })),

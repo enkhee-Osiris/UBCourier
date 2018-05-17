@@ -15,8 +15,8 @@ const mapStateToProps = ({ posts, auth }) => ({
 const enhance = compose(
   connect(mapStateToProps),
   withHandlers({
-    onPress: props => (item) => {
-      props.navigation.navigate(screens.PostDetails, { item });
+    onPress: props => (post) => {
+      props.navigation.navigate(screens.PostDetails, { post });
     },
   }),
 );

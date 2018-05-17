@@ -19,41 +19,41 @@ const PostItem = ({
   onUserPress,
 }) => (
   <TouchableItem
-    style={s.postContainer}
     onPress={onPress}
   >
-    <TouchableItem
-      style={s.userContainer}
-      onPress={() => onUserPress(userId)}
-    >
-      <Image
-        style={s.userAvatar}
-        source={{ uri: userPhotoURL }}
-      />
-      <Text style={s.userDisplayName}>{userDisplayName}</Text>
-    </TouchableItem>
-    <Separator style={s.separator} marginVertical={9} />
-    <View style={s.row}>
-      <Text style={s.label}>NAME:</Text>
-      <Text style={s.detail}>{name}</Text>
-    </View>
-    <View style={s.row}>
-      <Text style={s.label}>WEIGHT:</Text>
-      <Text style={s.detail}>{weight} gr</Text>
-    </View>
-    <View style={s.row}>
-      <Text style={s.label}>VOLUME:</Text>
-      <Text style={s.detail}>{volume} cm3</Text>
-    </View>
-    <View style={s.row}>
-      <Text style={s.label}>PRICE:</Text>
-      <Text style={s.detail}>{price}</Text>
-    </View>
-    <View style={s.row}>
-      <Text style={s.label}>STATUS:</Text>
-      <Text style={[s.detail, { color: status.color }]}>
-        {status.message}
-      </Text>
+    <View style={s.postContainer}>
+      <TouchableItem onPress={() => onUserPress(userId)}>
+        <View style={s.userContainer}>
+          <Image
+            style={s.userAvatar}
+            source={{ uri: userPhotoURL }}
+          />
+          <Text style={s.userDisplayName}>{userDisplayName}</Text>
+        </View>
+      </TouchableItem>
+      <Separator style={s.separator} marginVertical={9} />
+      <View style={s.row}>
+        <Text style={s.label}>NAME:</Text>
+        <Text style={s.detail}>{name}</Text>
+      </View>
+      <View style={s.row}>
+        <Text style={s.label}>WEIGHT:</Text>
+        <Text style={s.detail}>{weight} gr</Text>
+      </View>
+      <View style={s.row}>
+        <Text style={s.label}>VOLUME:</Text>
+        <Text style={s.detail}>{volume} cm3</Text>
+      </View>
+      <View style={s.row}>
+        <Text style={s.label}>PRICE:</Text>
+        <Text style={s.detail}>{price}</Text>
+      </View>
+      <View style={s.row}>
+        <Text style={s.label}>STATUS:</Text>
+        <Text style={[s.detail, { color: status.color }]}>
+          {status.message}
+        </Text>
+      </View>
     </View>
   </TouchableItem>
 );

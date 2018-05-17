@@ -9,12 +9,12 @@ import mapStyle from '../../styles/mapStyle';
 const Home = ({ location }) => (
   <MapView
     style={s.root}
+    customMapStyle={mapStyle}
     initialRegion={{
       ...location,
       latitudeDelta: 0.02,
       longitudeDelta: 0.013,
     }}
-    customMapStyle={mapStyle}
   />
 );
 

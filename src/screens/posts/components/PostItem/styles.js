@@ -3,6 +3,7 @@ import {
   dimensions,
   colors,
   fontWeights,
+  fontSizes,
   fontStyle,
 } from '../../../../styles';
 
@@ -26,9 +27,10 @@ const styles = StyleSheet.create({
     borderRadius: 9,
     marginRight: 10,
   },
-  userDisplayname: fontStyle({
+  userDisplayName: fontStyle({
     color: colors.primary,
-    fontWeight: fontWeights.small,
+    fontWeight: fontWeights.semiBold,
+    fontSize: fontSizes.small,
   }),
   separator: {
     backgroundColor: colors.lightGrey,
