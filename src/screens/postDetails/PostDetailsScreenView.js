@@ -4,7 +4,7 @@ import { View, Image, Text } from 'react-native';
 import { MapView } from 'expo';
 import { Icon } from 'react-native-elements';
 import MapViewDirections from 'react-native-maps-directions';
-import { NavigationButton, TouchableItem } from '../../components';
+import { NavigationButton, CustomMarker, TouchableItem } from '../../components';
 import { GOOGLE_MAPS_API_KEY } from '../../config/local';
 import { colors, fontSizes } from '../../styles';
 import mapStyle from '../../styles/mapStyle';
@@ -13,6 +13,7 @@ import s from './styles';
 
 // TODO add user profile click
 const PostDetails = ({
+  location,
   post,
   userDisplayName,
   userPhotoURL,
@@ -125,6 +126,7 @@ const PostDetails = ({
         >
           <MapView.Marker coordinate={post.currentLocation} />
           <MapView.Marker coordinate={post.targetLocation} />
+          <CustomMarker coordinate={location} iconName="ios-bicycle" />
           <MapViewDirections
             origin={post.currentLocation}
             destination={post.targetLocation}
@@ -139,6 +141,7 @@ const PostDetails = ({
 };
 
 PostDetails.propTypes = {
+  location: PropTypes.object,
   post: PropTypes.object,
   userDisplayName: PropTypes.string,
   userPhotoURL: PropTypes.string,

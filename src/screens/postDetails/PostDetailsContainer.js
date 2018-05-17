@@ -12,8 +12,9 @@ import { defaultUserAvatar } from '../../constants/images';
 import { postOperations } from '../../modules/posts';
 import PostDetailsScreenView from './PostDetailsScreenView';
 
-const mapStateToProps = ({ auth, users }) => ({
+const mapStateToProps = ({ auth, location, users }) => ({
   auth,
+  location,
   usersEntities: users.byId,
 });
 
