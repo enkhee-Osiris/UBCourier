@@ -10,7 +10,6 @@ import {
 const styles = StyleSheet.create({
   postContainer: {
     width: '100%',
-    marginVertical: dimensions.halfIndent,
     padding: dimensions.halfIndent,
     borderRadius: 4,
     borderWidth: 1,

@@ -47,6 +47,7 @@ const Posts = ({
         data={posts}
         renderItem={_renderItem}
         keyExtractor={_keyExtractor}
+        ItemSeparatorComponent={() => (<View style={s.separator} />)}
         ListEmptyComponent={<Text style={s.emptyText}>You don&apos;t have any post</Text>}
       />
     </View>
