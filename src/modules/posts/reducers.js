@@ -33,7 +33,7 @@ export const createPost = ({
 const postReducer = handleActions({
   [types.POST_LOADED]: (state, { payload }) => insertAll(state, payload),
   [types.POST_CREATED]: (state, { payload }) => insert(state, createPost(payload)),
-  [types.POST_UPDATE]: (state, { payload }) => update(state, payload.id, payload),
+  [types.POST_UPDATED]: (state, { payload }) => update(state, payload.id, payload),
   [types.POST_DELETED]: (state, { payload }) => remove(state, payload),
 }, initialState);
 
