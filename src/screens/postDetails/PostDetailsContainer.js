@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Linking } from 'react-native';
 import {
   compose,
   withProps,
@@ -7,17 +8,34 @@ import {
   hoistStatics,
   lifecycle,
 } from 'recompose';
+import { defaultUserAvatar } from '../../constants/images';
 import { postOperations } from '../../modules/posts';
 import PostDetailsScreenView from './PostDetailsScreenView';
+
+const mapStateToProps = ({ auth, users }) => ({
+  auth,
+  usersEntities: users.byId,
+});
 
 const withPost = withProps(({ navigation }) => ({
   post: navigation.getParam('post'),
 }));
 
+const onPhoneNumberPress = ({ userPhoneNumber }) => () => {
+  Linking.openURL(`tel:${userPhoneNumber}`);
+};
+
 const enhance = compose(
-  connect(null, postOperations),
+  connect(mapStateToProps, postOperations),
   withPost,
+  withProps(({ usersEntities, post }) => ({
+    // TODO this will throw exception
+    userDisplayName: usersEntities[post.userId].displayName || 'Account deleted',
+    userPhoneNumber: usersEntities[post.userId].phoneNumber || '----',
+    userPhotoURL: usersEntities[post.userId].photoURL || defaultUserAvatar,
+  })),
   withHandlers({
+    onPhoneNumberPress,
   }),
   lifecycle({
     componentWillMount() {
