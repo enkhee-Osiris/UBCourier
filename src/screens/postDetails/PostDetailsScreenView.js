@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Image, Text } from 'react-native';
+import { Icon, Button } from 'react-native-elements';
 import { MapView } from 'expo';
-import { Icon } from 'react-native-elements';
 import MapViewDirections from 'react-native-maps-directions';
 import { NavigationButton, CustomMarker, TouchableItem } from '../../components';
 import { GOOGLE_MAPS_API_KEY } from '../../config/local';
@@ -13,12 +13,15 @@ import s from './styles';
 
 // TODO add user profile click
 const PostDetails = ({
+  isLoading,
   location,
   post,
   userDisplayName,
   userPhotoURL,
   userPhoneNumber,
+  isMyPost,
   onPhoneNumberPress,
+  onDeliver,
 }) => {
   const getStatus = () => {
     if (post.isDelivered) {
@@ -136,17 +139,35 @@ const PostDetails = ({
           />
         </MapView>
       </View>
+      {
+        !post.delivererId &&
+        !isMyPost &&
+        <Button
+          loading={isLoading}
+          loadingProps={{ size: 'small', color: colors.greyDarker }}
+          title="Deliver"
+          buttonStyle={s.deliverButton}
+          textStyle={s.deliverButtonTitle}
+          disabledStyle={s.deliverButtonDisabled}
+          containerViewStyle={s.deliverButtonContainer}
+          onPress={() => onDeliver()}
+          disabled={isLoading}
+        />
+      }
     </View>
   );
 };
 
 PostDetails.propTypes = {
+  isLoading: PropTypes.bool,
   location: PropTypes.object,
   post: PropTypes.object,
   userDisplayName: PropTypes.string,
   userPhotoURL: PropTypes.string,
   userPhoneNumber: PropTypes.string,
+  isMyPost: PropTypes.bool,
   onPhoneNumberPress: PropTypes.func,
+  onDeliver: PropTypes.func,
 };
 
 PostDetails.navigationOptions = ({ navigation }) => ({

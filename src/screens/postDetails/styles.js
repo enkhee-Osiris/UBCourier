@@ -69,10 +69,32 @@ const styles = StyleSheet.create({
   }),
   mapContainer: {
     width: '100%',
-    height: 250,
+    height: 200,
   },
   map: {
     flex: 1,
+  },
+  deliverButtonContainer: {
+    marginLeft: 0,
+    marginRight: 0,
+    width: '100%',
+    height: 45,
+    marginVertical: 20,
+  },
+  deliverButtonTitle: fontStyle({
+    fontWeight: fontWeights.bold,
+    fontSize: fontSizes.verySmall,
+    color: colors.greyDarker,
+  }),
+  deliverButton: {
+    backgroundColor: colors.transparent,
+    borderColor: colors.green,
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  deliverButtonDisabled: {
+    backgroundColor: colors.lightGrey,
+    borderColor: colors.lightGrey,
   },
 });
 
