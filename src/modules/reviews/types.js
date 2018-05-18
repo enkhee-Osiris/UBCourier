@@ -1,0 +1,4 @@
+export default {
+  REVIEW_LOADED: 'REVIEW_LOADED',
+  REVIEW_CREATED: 'REVIEW_CREATED',
+};

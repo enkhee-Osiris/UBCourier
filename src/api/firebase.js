@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import { FACEBOOK_APP_ID } from '../config/local';
 import firebase from '../config/firebase';
 import { createPost } from '../modules/posts/reducers';
+import { createReview } from '../modules/reviews/reducers';
 import { createUser } from '../modules/users/reducers';
 
 /**
@@ -154,4 +155,29 @@ export async function removePost(id) {
   const postRef = await firebase.database().ref(`posts/${id}`);
 
   return postRef.remove();
+}
+
+/**
+ * Review
+ */
+
+export async function getReviews() {
+  const reviews = [];
+  const reviewRef = await firebase.database().ref('reviews/');
+  await reviewRef.once('value').then((snapshot) => {
+    snapshot.forEach((snap) => {
+      const review = createReview({ ...snap.val(), id: snap.key });
+      reviews.push(review);
+    });
+  });
+
+  return reviews;
+}
+
+export async function setReview(review) {
+  const reviewRef = await firebase.database().ref('reviews/');
+  const newReviewRef = reviewRef.push();
+  await newReviewRef.set(review);
+
+  return newReviewRef.key;
 }

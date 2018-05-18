@@ -6,6 +6,7 @@ import authReducer from './auth';
 import locationReducer from './location';
 import userReducer from './users';
 import postReducer from './posts';
+import reviewReducer from './reviews';
 
 const rootReducer = combineReducers({
   app: appReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   location: locationReducer,
   users: userReducer,
   posts: postReducer,
+  reviews: reviewReducer,
 });
 
 export default rootReducer;
