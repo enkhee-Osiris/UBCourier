@@ -10,6 +10,9 @@ export default {
   PostEditor: 'PostEditor',
   PostDetails: 'PostDetails',
 
+  ProfileRoot: 'ProfileRoot',
+  Profile: 'Profile',
+
   SettingsRoot: 'SettingsRoot',
   Settings: 'Settings',
 
