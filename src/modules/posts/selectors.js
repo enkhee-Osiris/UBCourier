@@ -57,7 +57,7 @@ export const getUserTotalBalance = createSelector(
   },
 );
 
-export const getUserTotalDeliveries = createSelector(
+export const getTotalDeliveriesOfUser = createSelector(
   [
     getPostsIds,
     getPostsEntities,

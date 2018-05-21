@@ -1,12 +1,12 @@
 import { createSelector } from 'reselect';
 
-const getReviewIds = reviews => reviews.ids || [];
+const getReviewsIds = reviews => reviews.ids || [];
 const getReviewsEntities = reviews => reviews.byId || {};
 const getUserIdForFiltering = (_, uid) => uid;
 
 export const getReviewsForUser = createSelector(
   [
-    getReviewIds,
+    getReviewsIds,
     getReviewsEntities,
     getUserIdForFiltering,
   ],
@@ -24,7 +24,7 @@ export const getReviewsForUser = createSelector(
 
 export const getAvaragePointOfUser = createSelector(
   [
-    getReviewIds,
+    getReviewsIds,
     getReviewsEntities,
     getUserIdForFiltering,
   ],
@@ -35,7 +35,7 @@ export const getAvaragePointOfUser = createSelector(
         points.push(entities[id].point);
       }
     });
-    const sumPoints = points.reduce((sum, x) => sum + x);
+    const sumPoints = points.reduce((sum, x) => sum + x, 0);
 
     return Math.round((sumPoints / points.length) * 10) / 10;
   },

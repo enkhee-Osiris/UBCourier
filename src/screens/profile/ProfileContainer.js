@@ -15,7 +15,7 @@ import {
 } from '../../modules/reviews/selectors';
 import {
   getUserPosts,
-  getUserTotalDeliveries,
+  getTotalDeliveriesOfUser,
 } from '../../modules/posts/selectors';
 
 
@@ -49,8 +49,8 @@ const enhance = compose(
     userPhotoURL: usersEntities[userId].photoURL || defaultUserAvatar,
     userPosts: getUserPosts(posts, userId),
     userReviews: getReviewsForUser(reviews, userId),
-    userTotalDeliveries: getUserTotalDeliveries(posts, userId),
-    userAvaragePoint: getAvaragePointOfUser(posts, userId),
+    userTotalDeliveries: getTotalDeliveriesOfUser(posts, userId),
+    userAvaragePoint: getAvaragePointOfUser(reviews, userId),
   })),
   withHandlers({
     onPostPress: props => (post) => {
