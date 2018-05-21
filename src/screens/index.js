@@ -7,7 +7,6 @@ import Posts from './posts';
 import PostEditor from './postEditor';
 import PostDetails from './postDetails';
 import Profile from './profile';
-import Screen from './screen/ScreenScreen';
 import Settings from './settings/SettingsScreen';
 
 export {
@@ -20,6 +19,5 @@ export {
   PostEditor,
   PostDetails,
   Profile,
-  Screen,
   Settings,
 };

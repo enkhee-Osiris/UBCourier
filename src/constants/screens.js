@@ -16,9 +16,6 @@ export default {
   SettingsRoot: 'SettingsRoot',
   Settings: 'Settings',
 
-  ScreenRoot: 'ScreenRoot',
-  Screen: 'Screen',
-
   Auth: 'Auth',
   Login: 'Login',
   Register: 'Register',

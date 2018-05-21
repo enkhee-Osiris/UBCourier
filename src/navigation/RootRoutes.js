@@ -3,7 +3,6 @@ import {
   HomeNavigator,
   PostNavigator,
   ProfileNavigator,
-  ScreenNavigator,
   SettingsNavigator,
 } from './navigators';
 
@@ -16,9 +15,6 @@ const Routes = {
   },
   [screens.ProfileRoot]: {
     screen: ProfileNavigator,
-  },
-  [screens.ScreenRoot]: {
-    screen: ScreenNavigator,
   },
   [screens.SettingsRoot]: {
     screen: SettingsNavigator,
