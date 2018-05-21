@@ -3,6 +3,7 @@ import { compose, withState, withHandlers, lifecycle } from 'recompose';
 import { authOperations } from '../../modules/auth';
 import { postOperations } from '../../modules/posts';
 import { userOperations } from '../../modules/users';
+import { reviewOperations } from '../../modules/reviews';
 import screens from '../../constants/screens';
 import AuthScreenView from './AuthScreenView';
 
@@ -16,12 +17,14 @@ const onLogInWithFacebook = ({
   logInWithFacebook,
   loadPosts,
   loadUsers,
+  loadReviews,
 }) => async () => {
   toggleLoading(true);
   const uid = await logInWithFacebook();
   if (uid) {
     await loadPosts();
     await loadUsers();
+    await loadReviews();
   } else {
     toggleLoading(false);
   }
@@ -38,7 +41,12 @@ const onSignInPress = ({ clearError, navigation }) => () => {
 };
 
 const enhance = compose(
-  connect(mapStateToProps, { ...authOperations, ...postOperations, ...userOperations }),
+  connect(mapStateToProps, {
+    ...authOperations,
+    ...postOperations,
+    ...userOperations,
+    ...reviewOperations,
+  }),
   withState('isLoading', 'toggleLoading', false),
   withHandlers({
     onLogInWithFacebook,

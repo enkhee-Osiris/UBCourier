@@ -3,6 +3,7 @@ import { compose, withState, withHandlers, lifecycle, withProps } from 'recompos
 import { authOperations } from '../../modules/auth';
 import { postOperations } from '../../modules/posts';
 import { userOperations } from '../../modules/users';
+import { reviewOperations } from '../../modules/reviews';
 import screens from '../../constants/screens';
 import RegisterScreenView from './RegisterScreenView';
 import { createUserProfile } from '../../api/firebase';
@@ -35,6 +36,7 @@ const onRegister = ({
   logIn,
   loadPosts,
   loadUsers,
+  loadReviews,
   email,
   phoneNumber,
   displayName,
@@ -53,6 +55,7 @@ const onRegister = ({
     await logIn(email, password);
     await loadPosts();
     await loadUsers();
+    await loadReviews();
   } else {
     toggleLoading(false);
   }
@@ -64,7 +67,12 @@ const onSignInPress = ({ clearError, navigation }) => () => {
 };
 
 const enhance = compose(
-  connect(mapStateToProps, { ...authOperations, ...postOperations, ...userOperations }),
+  connect(mapStateToProps, {
+    ...authOperations,
+    ...postOperations,
+    ...userOperations,
+    ...reviewOperations,
+  }),
   withState('email', 'onEmailChange', ''),
   withState('phoneNumber', 'onPhoneNumberChange', ''),
   withState('password', 'onPasswordChange', ''),

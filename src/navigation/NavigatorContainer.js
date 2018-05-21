@@ -4,6 +4,7 @@ import { compose, withState, withHandlers, lifecycle } from 'recompose';
 import { locationOperations } from '../modules/location';
 import { postOperations } from '../modules/posts';
 import { userOperations } from '../modules/users';
+import { reviewOperations } from '../modules/reviews';
 import NavigatorView from './NavigatorView';
 
 const mapStateToProps = ({
@@ -43,6 +44,10 @@ const loadUsers = ({ dispatch }) => async () => {
   await dispatch(userOperations.loadUsers());
 };
 
+const loadReviews = ({ dispatch }) => async () => {
+  await dispatch(reviewOperations.loadReviews());
+};
+
 const enhance = compose(
   connect(mapStateToProps),
   withState('isLocationListening', 'toggleLocationListen', false),
@@ -51,6 +56,7 @@ const enhance = compose(
     listenLocation,
     loadPosts,
     loadUsers,
+    loadReviews,
   }),
   lifecycle({
     componentWillMount() {
@@ -59,6 +65,7 @@ const enhance = compose(
         this.props.listenLocation();
         this.props.loadPosts();
         this.props.loadUsers();
+        this.props.loadReviews();
       }
     },
     componentDidUpdate() {

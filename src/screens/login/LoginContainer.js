@@ -3,6 +3,7 @@ import { compose, withState, withHandlers, lifecycle, withProps } from 'recompos
 import { authOperations } from '../../modules/auth';
 import { postOperations } from '../../modules/posts';
 import { userOperations } from '../../modules/users';
+import { reviewOperations } from '../../modules/reviews';
 import screens from '../../constants/screens';
 import LoginScreenView from './LoginScreenView';
 
@@ -22,6 +23,7 @@ const onLogIn = ({
   logIn,
   loadPosts,
   loadUsers,
+  loadReviews,
   email,
   password,
 }) => async () => {
@@ -30,6 +32,7 @@ const onLogIn = ({
   if (uid) {
     await loadPosts();
     await loadUsers();
+    await loadReviews();
   } else {
     toggleLoading(false);
   }
@@ -41,7 +44,12 @@ const onRegisterPress = ({ clearError, navigation }) => () => {
 };
 
 const enhance = compose(
-  connect(mapStateToProps, { ...authOperations, ...postOperations, ...userOperations }),
+  connect(mapStateToProps, {
+    ...authOperations,
+    ...postOperations,
+    ...userOperations,
+    ...reviewOperations,
+  }),
   withState('email', 'onEmailChange', ''),
   withState('password', 'onPasswordChange', ''),
   withState('isLoading', 'toggleLoading', false),
