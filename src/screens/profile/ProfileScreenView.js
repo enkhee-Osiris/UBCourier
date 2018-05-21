@@ -9,18 +9,12 @@ import {
   Text,
 } from 'react-native';
 import { NavigationButton, Separator } from '../../components';
-import { TabHeader, PostItem } from './components';
+import { TabHeader, PostItem, ReviewItem } from './components';
 import appStyles from '../../styles/AppStyles';
 import s from './styles';
 
-const FirstRoute = () => (
-  <View style={[s.container, { backgroundColor: '#ff4081' }]} />
-);
-const SecondRoute = () => (
-  <View style={[s.container, { backgroundColor: '#673ab7' }]} />
-);
-
 const Profile = ({
+  navigation,
   navigationState,
   userDisplayName,
   userPhotoURL,
@@ -46,6 +40,15 @@ const Profile = ({
     />
   );
 
+  const _renderReviewItem = ({ item }) => (
+    <ReviewItem
+      navigation={navigation}
+      point={item.point}
+      reviewerId={item.reviewerId}
+      text={item.text}
+    />
+  );
+
   const PostsView = () => (
     <ScrollView style={s.container}>
       <FlatList
@@ -58,9 +61,21 @@ const Profile = ({
     </ScrollView>
   );
 
+  const ReviewsView = () => (
+    <ScrollView style={s.container}>
+      <FlatList
+        data={userReviews}
+        renderItem={_renderReviewItem}
+        keyExtractor={_keyExtractor}
+        ItemSeparatorComponent={Separator}
+        ListEmptyComponent={<Text style={s.emptyText}>User don&apos;t have any review</Text>}
+      />
+    </ScrollView>
+  );
+
   const _renderScene = SceneMap({
     posts: PostsView,
-    reviews: SecondRoute,
+    reviews: ReviewsView,
   });
 
   return (
@@ -97,6 +112,7 @@ Profile.navigationOptions = ({ navigation }) => ({
 });
 
 Profile.propTypes = {
+  navigation: PropTypes.object,
   navigationState: PropTypes.object,
   userDisplayName: PropTypes.string,
   userPhotoURL: PropTypes.string,

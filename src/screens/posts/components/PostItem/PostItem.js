@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Image, Text } from 'react-native';
 import { TouchableItem, Separator } from '../../../../components';
-import { colors } from '../../../../styles';
 import s from './styles';
 
 const PostItem = ({
