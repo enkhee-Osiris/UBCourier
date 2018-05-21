@@ -18,6 +18,13 @@ import {
   getTotalDeliveriesOfUser,
 } from '../../modules/posts/selectors';
 
+const navigationState = {
+  index: 0,
+  routes: [
+    { key: 'posts', title: 'Posts' },
+    { key: 'reviews', title: 'Reviews' },
+  ],
+};
 
 const mapStateToProps = ({
   auth,
@@ -35,10 +42,15 @@ const withUserId = withProps(({ auth, navigation }) => ({
   userId: navigation.getParam('userId', auth.user.uid),
 }));
 
+const updateNavigationIndex = ({ setNavigationState }) => (index) => {
+  setNavigationState(state => ({ ...state, index }));
+};
+
 const enhance = compose(
   connect(mapStateToProps),
   withUserId,
   withState('isModalVisible', 'toggleModal', false),
+  withState('navigationState', 'setNavigationState', navigationState),
   withProps(({
     posts,
     reviews,
@@ -56,6 +68,7 @@ const enhance = compose(
     onPostPress: props => (post) => {
       props.navigation.navigate(screens.PostDetails, { post });
     },
+    updateNavigationIndex,
   }),
 );
 
