@@ -1,3 +1,5 @@
+import { colors } from './index';
+
 const fontWeights = {
   100: 'Thin',
   200: 'ExtraLight',
@@ -17,6 +19,7 @@ const fontStyle = (styles = {}) => {
   return ({
     fontFamily: family,
     fontWeight,
+    color: colors.primary,
     ...styles,
   });
 };
