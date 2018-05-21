@@ -7,17 +7,27 @@ import {
   hoistStatics,
 } from 'recompose';
 import screens from '../../constants/screens';
-import { getUserPosts } from '../../modules/posts/selectors';
 import ProfileScreenView from './ProfileScreenView';
 import { defaultUserAvatar } from '../../constants/images';
+import {
+  getReviewsForUser,
+  getAvaragePointOfUser,
+} from '../../modules/reviews/selectors';
+import {
+  getUserPosts,
+  getUserTotalDeliveries,
+} from '../../modules/posts/selectors';
+
 
 const mapStateToProps = ({
   auth,
   posts,
   users,
+  reviews,
 }) => ({
   auth,
   posts,
+  reviews,
   usersEntities: users.byId,
 });
 
@@ -29,10 +39,18 @@ const enhance = compose(
   connect(mapStateToProps),
   withUserId,
   withState('isModalVisible', 'toggleModal', false),
-  withProps(({ posts, userId, usersEntities }) => ({
+  withProps(({
+    posts,
+    reviews,
+    userId,
+    usersEntities,
+  }) => ({
     userDisplayName: usersEntities[userId].displayName || 'Account deleted',
     userPhotoURL: usersEntities[userId].photoURL || defaultUserAvatar,
     userPosts: getUserPosts(posts, userId),
+    userReviews: getReviewsForUser(reviews, userId),
+    userTotalDeliveries: getUserTotalDeliveries(posts, userId),
+    userAvaragePoint: getAvaragePointOfUser(posts, userId),
   })),
   withHandlers({
     onPostPress: props => (post) => {

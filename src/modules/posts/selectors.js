@@ -56,3 +56,22 @@ export const getUserTotalBalance = createSelector(
     return totalPrice;
   },
 );
+
+export const getUserTotalDeliveries = createSelector(
+  [
+    getPostsIds,
+    getPostsEntities,
+    getUidForFiltering,
+  ],
+  (ids, entities, uid) => {
+    const deliveries = [];
+    ids.forEach((id) => {
+      const post = entities[id];
+      if (post.delivererId === uid) {
+        deliveries.push(post);
+      }
+    });
+
+    return deliveries.length;
+  },
+);
