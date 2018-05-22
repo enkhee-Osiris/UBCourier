@@ -11,6 +11,7 @@ import {
 import { defaultUserAvatar } from '../../constants/images';
 import { postOperations } from '../../modules/posts';
 import PostDetailsScreenView from './PostDetailsScreenView';
+import screens from '../../constants/screens';
 
 const mapStateToProps = ({ auth, location, users }) => ({
   auth,
@@ -24,6 +25,13 @@ const withPost = withProps(({ navigation }) => ({
 
 const onPhoneNumberPress = ({ userPhoneNumber }) => () => {
   Linking.openURL(`tel:${userPhoneNumber}`);
+};
+
+const onUserPress = ({
+  navigation,
+  post,
+}) => () => {
+  navigation.navigate(screens.Profile, { userId: post.userId });
 };
 
 const onDeliver = ({
@@ -53,6 +61,7 @@ const enhance = compose(
   })),
   withHandlers({
     onPhoneNumberPress,
+    onUserPress,
     onDeliver,
   }),
   lifecycle({

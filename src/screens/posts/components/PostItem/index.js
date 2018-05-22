@@ -17,8 +17,7 @@ const enhance = compose(
   })),
   withHandlers({
     onUserPress: props => (userId) => {
-      // TODO change userprofile screen
-      props.navigation.navigate(screens.PostDetails, { userId });
+      props.navigation.navigate(screens.Profile, { userId });
     },
   }),
 );

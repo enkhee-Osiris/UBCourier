@@ -11,7 +11,6 @@ import mapStyle from '../../styles/mapStyle';
 import appStyles from '../../styles/AppStyles';
 import s from './styles';
 
-// TODO add user profile click
 const PostDetails = ({
   isLoading,
   location,
@@ -21,6 +20,7 @@ const PostDetails = ({
   userPhoneNumber,
   isMyPost,
   onPhoneNumberPress,
+  onUserPress,
   onDeliver,
 }) => {
   const getStatus = () => {
@@ -36,8 +36,7 @@ const PostDetails = ({
   return (
     <View style={[s.root, appStyles.containerStyle]}>
       <Text style={s.postName}>{post.name}</Text>
-      {/* TODO Add user prfile  */}
-      <TouchableItem onPress={() => console.log('User profile')}>
+      <TouchableItem onPress={() => onUserPress()}>
         <View style={s.userContainer}>
           <Text style={s.userBy}>By</Text>
           <Image
@@ -167,6 +166,7 @@ PostDetails.propTypes = {
   userPhoneNumber: PropTypes.string,
   isMyPost: PropTypes.bool,
   onPhoneNumberPress: PropTypes.func,
+  onUserPress: PropTypes.func,
   onDeliver: PropTypes.func,
 };
 
