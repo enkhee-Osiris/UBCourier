@@ -7,6 +7,7 @@ import MapViewDirections from 'react-native-maps-directions';
 import { NavigationButton, CustomMarker, TouchableItem } from '../../components';
 import { GOOGLE_MAPS_API_KEY } from '../../config/local';
 import { colors, fontSizes } from '../../styles';
+import EditButton from './EditButton';
 import mapStyle from '../../styles/mapStyle';
 import appStyles from '../../styles/AppStyles';
 import s from './styles';
@@ -176,7 +177,7 @@ PostDetails.navigationOptions = ({ navigation }) => ({
     onPress={() => navigation.goBack()}
   />,
   headerTitle: 'Post Details',
-  // TODO add delete button
+  headerRight: <EditButton navigation={navigation} />,
 });
 
 export default PostDetails;

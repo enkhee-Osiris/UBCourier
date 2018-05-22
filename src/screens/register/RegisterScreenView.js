@@ -7,7 +7,7 @@ import {
 import { Button } from 'react-native-elements';
 import { Input, NavigationButton, TouchableItem } from '../../components';
 import appStyles from '../../styles/AppStyles';
-import { colors, fontSizes, fontWeights } from '../../styles';
+import { colors } from '../../styles';
 import s from './styles';
 
 const Register = ({

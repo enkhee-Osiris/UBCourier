@@ -5,6 +5,7 @@ import { Button } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import { NavigationButton, Input, TouchableItem } from '../../components';
 import { colors } from '../../styles';
+import DeleteButton from './DeleteButton';
 import mapStyle from '../../styles/mapStyle';
 import appStyles from '../../styles/AppStyles';
 import s from './styles';
@@ -156,12 +157,8 @@ PostEditor.navigationOptions = ({ navigation }) => ({
     iconName="ios-arrow-round-back"
     onPress={() => navigation.goBack()}
   />,
-  headerRight: <NavigationButton
-    iconName="ios-trash-outline"
-    tintColor={colors.red}
-    onPress={() => console.log('delete')}
-  />,
   headerTitle: navigation.getParam('post') ? 'Edit post' : 'New post',
+  headerRight: <DeleteButton navigation={navigation} />,
 });
 
 export default PostEditor;
