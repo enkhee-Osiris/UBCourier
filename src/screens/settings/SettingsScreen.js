@@ -1,34 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Platform, Text, View } from 'react-native';
-import screens from '../../constants/screens';
+import { Text, View } from 'react-native';
 import appStyles from '../../styles/AppStyles';
 
-const Settings = ({ navigation }) => (
-  <View>
-    <View wrapperStyle={appStyles.rowStyle}>
-      <Text>Settings screen</Text>
-    </View>
-
-    { Platform.select({
-        ios: (
-          <View>
-            <Button
-              title="Home"
-              onPress={() => navigation.navigate(screens.HomeRoot)}
-            />
-            <Button
-              title="Screen"
-              onPress={() => navigation.navigate(screens.ScreenRoot)}
-            />
-          </View>
-        ),
-    }) }
+const Settings = () => (
+  <View style={[appStyles.rowStyle, appStyles.containerStyle]}>
+    <Text>Settings screen</Text>
   </View>
 );
 
 Settings.propTypes = {
-  navigation: PropTypes.object,
+  // navigation: PropTypes.object,
 };
 
 Settings.navigationOptions = {
