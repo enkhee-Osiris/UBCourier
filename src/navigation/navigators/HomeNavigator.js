@@ -1,5 +1,9 @@
 import { StackNavigator } from 'react-navigation';
-import { Home, PostEditor } from '../../screens';
+import {
+  Home,
+  PostEditor,
+  PostDetails,
+} from '../../screens';
 import screens from '../../constants/screens';
 import navOptions from '../../styles/navOptions';
 import headerOptions from '../../styles/stackHeaderOptions';
@@ -11,6 +15,9 @@ const HomeNavigator = StackNavigator({
   },
   [screens.PostEditor]: {
     screen: PostEditor,
+  },
+  [screens.PostDetails]: {
+    screen: PostDetails,
   },
 }, {
   ...navOptions({

@@ -4,6 +4,24 @@ const getPostsIds = posts => posts.ids || [];
 const getPostsEntities = posts => posts.byId || {};
 const getUidForFiltering = (_, uid) => uid;
 
+export const getPostsExceptUser = createSelector(
+  [
+    getPostsIds,
+    getPostsEntities,
+    getUidForFiltering,
+  ],
+  (ids, entities, uid) => {
+    const posts = [];
+    ids.forEach((id) => {
+      if (entities[id].userId !== uid) {
+        posts.push(entities[id]);
+      }
+    });
+
+    return posts;
+  },
+);
+
 export const getUserPosts = createSelector(
   [
     getPostsIds,
