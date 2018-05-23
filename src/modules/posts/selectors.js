@@ -13,7 +13,7 @@ export const getPostsExceptUser = createSelector(
   (ids, entities, uid) => {
     const posts = [];
     ids.forEach((id) => {
-      if (entities[id].userId !== uid) {
+      if (entities[id].userId !== uid && !entities[id].delivererId) {
         posts.push(entities[id]);
       }
     });
