@@ -149,8 +149,8 @@ const PostDetails = ({
           loadingProps={{ size: 'small', color: colors.greyDarker }}
           title="Deliver"
           buttonStyle={s.deliverButton}
-          textStyle={s.deliverButtonTitle}
-          disabledStyle={s.deliverButtonDisabled}
+          textStyle={s.buttonTitle}
+          disabledStyle={s.buttonDisabled}
           containerViewStyle={s.deliverButtonContainer}
           onPress={() => onDeliver()}
           disabled={isLoading}
@@ -162,9 +162,9 @@ const PostDetails = ({
           loading={isLoading}
           loadingProps={{ size: 'small', color: colors.greyDarker }}
           title="Delivered"
-          buttonStyle={s.deliverButton}
-          textStyle={s.deliveedrButtonTitle}
-          disabledStyle={s.deliverButtonDisabled}
+          buttonStyle={s.deliveredButton}
+          textStyle={s.buttonTitle}
+          disabledStyle={s.buttonDisabled}
           containerViewStyle={s.deliverButtonContainer}
           onPress={() => onDelivered()}
           disabled={isLoading}

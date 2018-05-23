@@ -1,6 +1,6 @@
 import React from 'react';
 import { MapView } from 'expo';
-import { ScrollView, Image, View, Text } from 'react-native';
+import { ScrollView, Image, View, Text, Keyboard } from 'react-native';
 import { Button } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import { NavigationButton, Input, TouchableItem } from '../../components';
@@ -99,6 +99,7 @@ const PostEditor = ({
       isNotValidStyle={null}
       style={s.inputStyle}
       blurOnSubmit={false}
+      onSubmitEditing={() => Keyboard.dismiss()}
       inputRef={(input) => { this.priceTextInput = input; }}
     />
     <Text style={s.label}>TARGET LOCATION</Text>

@@ -45,6 +45,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.primary,
   },
+  emptyText: fontStyle({
+    alignSelf: 'center',
+    color: colors.primary,
+  }),
 });
 
 export default styles;

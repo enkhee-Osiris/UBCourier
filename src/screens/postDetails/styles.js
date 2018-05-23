@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     height: 45,
     marginVertical: 20,
   },
-  deliverButtonTitle: fontStyle({
+  buttonTitle: fontStyle({
     fontWeight: fontWeights.bold,
     fontSize: fontSizes.verySmall,
     color: colors.greyDarker,
@@ -92,7 +92,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
   },
-  deliverButtonDisabled: {
+  deliveredButton: {
+    backgroundColor: colors.transparent,
+    borderColor: colors.red,
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  buttonDisabled: {
     backgroundColor: colors.lightGrey,
     borderColor: colors.lightGrey,
   },
