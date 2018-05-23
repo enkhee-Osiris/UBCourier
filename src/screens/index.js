@@ -6,6 +6,7 @@ import Home from './home';
 import Posts from './posts';
 import PostEditor from './postEditor';
 import PostDetails from './postDetails';
+import Deliveries from './deliveries';
 import Profile from './profile';
 import Settings from './settings/SettingsScreen';
 
@@ -18,6 +19,7 @@ export {
   Posts,
   PostEditor,
   PostDetails,
+  Deliveries,
   Profile,
   Settings,
 };
