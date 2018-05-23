@@ -48,6 +48,19 @@ const onDeliver = ({
   navigation.goBack();
 };
 
+const onDelivered = ({
+  post,
+  navigation,
+  updatePost,
+  setLoading,
+}) => async () => {
+  setLoading(true);
+  const payload = { id: post.id, isDelivered: true };
+  await updatePost(payload);
+  setLoading(false);
+  navigation.goBack();
+};
+
 const enhance = compose(
   connect(mapStateToProps, postOperations),
   withPost,
@@ -58,15 +71,17 @@ const enhance = compose(
     userPhoneNumber: usersEntities[post.userId].phoneNumber || '----',
     userPhotoURL: usersEntities[post.userId].photoURL || defaultUserAvatar,
     isMyPost: post.userId === auth.user.uid,
+    isMyDelivery: post.delivererId === auth.user.uid,
   })),
   withHandlers({
     onPhoneNumberPress,
     onUserPress,
     onDeliver,
+    onDelivered,
   }),
   lifecycle({
     componentWillMount() {
-      console.log(this.props);
+      // console.log(this.props);
     },
   }),
 );

@@ -20,9 +20,11 @@ const PostDetails = ({
   userPhotoURL,
   userPhoneNumber,
   isMyPost,
+  isMyDelivery,
   onPhoneNumberPress,
   onUserPress,
   onDeliver,
+  onDelivered,
 }) => {
   const getStatus = () => {
     if (post.isDelivered) {
@@ -154,6 +156,20 @@ const PostDetails = ({
           disabled={isLoading}
         />
       }
+      {
+        isMyDelivery &&
+        <Button
+          loading={isLoading}
+          loadingProps={{ size: 'small', color: colors.greyDarker }}
+          title="Delivered"
+          buttonStyle={s.deliverButton}
+          textStyle={s.deliveedrButtonTitle}
+          disabledStyle={s.deliverButtonDisabled}
+          containerViewStyle={s.deliverButtonContainer}
+          onPress={() => onDelivered()}
+          disabled={isLoading}
+        />
+      }
     </View>
   );
 };
@@ -166,9 +182,11 @@ PostDetails.propTypes = {
   userPhotoURL: PropTypes.string,
   userPhoneNumber: PropTypes.string,
   isMyPost: PropTypes.bool,
+  isMyDelivery: PropTypes.bool,
   onPhoneNumberPress: PropTypes.func,
   onUserPress: PropTypes.func,
   onDeliver: PropTypes.func,
+  onDelivered: PropTypes.func,
 };
 
 PostDetails.navigationOptions = ({ navigation }) => ({
