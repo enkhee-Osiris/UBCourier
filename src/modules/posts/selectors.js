@@ -39,6 +39,24 @@ export const getUserPosts = createSelector(
     return posts;
   },
 );
+export const getUserDeliveries = createSelector(
+  [
+    getPostsIds,
+    getPostsEntities,
+    getUidForFiltering,
+  ],
+  (ids, entities, uid) => {
+    const deliveries = [];
+    ids.forEach((id) => {
+      const post = entities[id];
+      if (post.delivererId === uid) {
+        deliveries.push(post);
+      }
+    });
+
+    return deliveries;
+  },
+);
 
 export const getLocations = createSelector(
   [
