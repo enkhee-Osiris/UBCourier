@@ -2,6 +2,7 @@ import screens from '../constants/screens';
 import {
   HomeNavigator,
   PostNavigator,
+  DeliveryNavigator,
   ProfileNavigator,
   SettingsNavigator,
 } from './navigators';
@@ -12,6 +13,9 @@ const Routes = {
   },
   [screens.PostRoot]: {
     screen: PostNavigator,
+  },
+  [screens.DeliveryRoot]: {
+    screen: DeliveryNavigator,
   },
   [screens.ProfileRoot]: {
     screen: ProfileNavigator,

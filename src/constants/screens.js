@@ -10,6 +10,9 @@ export default {
   PostEditor: 'PostEditor',
   PostDetails: 'PostDetails',
 
+  DeliveryRoot: 'DeliveryRoot',
+  Deliveries: 'Deliveries',
+
   ProfileRoot: 'ProfileRoot',
   Profile: 'Profile',
 
