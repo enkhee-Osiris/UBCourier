@@ -6,7 +6,6 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import reducer from './modules';
 
-
 const navigationMiddleware = createReactNavigationReduxMiddleware(
   'root',
   state => state.navigator,
@@ -23,7 +22,7 @@ if (__DEV__) {
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  blacklist: ['navigator', 'app'],
+  blacklist: ['navigator', 'auth', 'app', 'posts', 'users', 'reviews'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
