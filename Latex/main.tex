@@ -1,0 +1,213 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Их сургуулийн оюутны тезис  
+% LaTeX Загвар
+% Version 2.3 (25/3/16)
+%
+% Энэ загвар нь дараах сайтаас авсан загварын монгол хувилбар юм.
+% http://www.LaTeXTemplates.com
+%
+% Version 2.x major modifications by:
+% Vel (vel@latextemplates.com)
+%
+% Анхдагч загварын эх үүсвэр:
+% Steve Gunn (http://users.ecs.soton.ac.uk/srg/softwaretools/document/templates/)
+% Sunil Patel (http://www.sunilpatel.co.uk/thesis-template/)
+%
+% Загварын лиценз:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%-------------------------------------------------------------------------------
+
+\documentclass[
+12pt, % Баримтын фонтын хэмжээ, сонголт: 10pt, 11pt, 12pt
+oneside, % Хоёр талаар хэвлэж үдэхээр тохируулсан. Нэг тал бол комментыг арилга
+%chapterinoneline,% Нэг мөрөнд бүлгийн дугаар, нэрийг гаргах
+mongolian, % babel багцын хэлний тохиргоо
+onehalfspacing, % Мөр хоорондын зай. Сонголтууд: singlespacing, onehalfspacing, doublespacing
+%draft, % Ноорог горимд шилжихийн тулд комментыг арилга(зураг, холбоос, hboxes гарахгүй)
+%nolistspacing, % Хэрэв мөр хоорондын зай onehalfspacing эсвэл doublespacing бол, жагсаалтын мөр хоорондын зайг single болгохын тулд комментыг арилга
+%liststotoc, % Зураг/хүснэгт/бусад жагсаалтыг гарчигт оруулахын тулд комментыг арилга
+%toctotoc, % Uncomment to add the main table of contents to the table of contents
+%parskip, % Параграф хооронд зай оруулахын тулд комментыг арилга
+%nohyperref, % hyperref багцыг ачаалахгүй бол комментыг арилга
+headsepline, % Толгой мөрийн доогуур шугам татахын тулд комментыг арилга
+]{MUST-Thesis} % Энэ класс файл нь баримтын бүтцийг тодорхойлно
+
+\usepackage[utf8]{inputenc} % Олон улсын тэмдэгт оруулахад хэрэгтэй
+\usepackage[T2A,T1]{fontenc} % Олон улсын тэмдэгтийн гаралтын кодчилол
+\usepackage[mongolian]{babel}
+
+\usepackage{titlesec}
+\usepackage[table]{xcolor}
+\usepackage{rotating} % эргүүлэх
+\usepackage[shortlabels]{enumitem}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subcaption}
+
+\usepackage[export]{adjustbox}
+
+\usepackage{pdflscape} % lscape
+
+\usepackage{pgf}
+\usepackage{tikz} % зураг зурах
+\usetikzlibrary{shapes,arrows,automata}
+
+\definecolor{CoverBlue}{cmyk}{0.6,0,0,0}
+\definecolor{ChapterYellow}{cmyk}{0,0.14,0.29,0}
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+\definecolor{lightlightgray}{gray}{0.9}
+
+\usepackage{xcolor}
+\usepackage{listings}
+\lstdefinelanguage{swift}
+{
+  morekeywords={
+    func,if,then,else,for,in,while,do,switch,case,default,where,break,continue,fallthrough,return,
+    typealias,struct,class,enum,protocol,var,func,let,get,set,willSet,didSet,inout,init,deinit,extension,
+    subscript,prefix,operator,infix,postfix,precedence,associativity,left,right,none,convenience,dynamic,
+    final,lazy,mutating,nonmutating,optional,override,required,static,unowned,safe,weak,internal,
+    private,public,is,as,self,unsafe,dynamicType,true,false,nil,Type,Protocol,
+  },
+  morecomment=[l]{//}, % l is for line comment
+  morecomment=[s]{/*}{*/}, % s is for start and end delimiter
+  morestring=[b]" % defines that strings are enclosed in double quotes
+}
+
+\definecolor{keyword}{HTML}{BA2CA3}
+\definecolor{string}{HTML}{D12F1B}
+\definecolor{comment}{HTML}{008400}
+
+\lstset{
+  language=swift,
+  basicstyle=\ttfamily,
+  showstringspaces=false, % lets spaces in strings appear as real spaces
+  columns=fixed,
+  keepspaces=true,
+  keywordstyle=\color{keyword},
+  stringstyle=\color{string},
+  commentstyle=\color{comment},
+}
+
+\usepackage[autostyle=false]{csquotes} % Ном зүйд хэлнээс хамаарсан хашилт оруулахад хэрэгтэй
+
+\usepackage[backend=bibtex,natbib=true,sorting=none,sortcites]{biblatex} % Ном зүйд bibtex -г ашиглах
+
+\addbibresource{references.bib} % Ном зүйн файл
+
+\newcommand{\authorshipname}{Зохиогч эрхийн хамгаалал}
+\newcommand{\abbrevname}{Товчилсон үгс}
+\newcommand{\constantsname}{Физик тогтмолууд}
+\newcommand{\symbolsname}{Таних тэмдэгтүүд}
+\newcommand{\introname}{Удиртгал}
+\newcommand{\conclusionname}{Ерөнхий дүгнэлт}
+\newcommand{\acknowledgementname}{Талархал}
+\newcommand{\glossaryname}{Тайлбар толь}
+\newcommand{\abstractname}{Хураангуй}
+ 
+%-------------------------------------------------------------------------------
+%	THESIS INFORMATION
+%-------------------------------------------------------------------------------
+
+\thesistitle{Тээврийн апп хөгжүүлэх} % Таны ажлын нэр, нүүр болон хураангуй хуудсанд ашигласан. Өөр газарт бол \ttitle командыг хэрэглэнэ
+\thesissmalltitle{Develop a transfer app} % Таны ажлын богино нэр Өөр газарт бол \tstitle командыг хэрэглэнэ
+\thesistype{Бакалаврын төгсөлтийн ажил} % Удирдагчийн нэр, нүүр хуудсанд ашиглана. Дурын газарт бол \thesisname командыг хэрэглэнэ
+\supervisor{Магистр Ж. Золжаргал} % Удирдагчийн нэр, нүүр хуудсанд ашиглана. Дурын газарт бол \supname командыг хэрэглэнэ
+\reader{.......................} % Шүүмжлэгчийн нэр, Дурын газарт бол \readname командыг хэрэглэнэ
+\advisor{Магистр Б. Сод-Од} % Зөвлөгчийн нэр, Дурын газарт бол \advicename командыг хэрэглэнэ
+\degreeind{D480200} % Мэргэжлийн индекс, нүүр болон хураангуй хуудсанд ашигласан. Өөр газарт бол \degreeid командыг хэрэглэнэ
+\degree{Програм хангамж} % Боловсролын зэрэг, нүүр болон хураангуй хуудсанд ашигласан. Өөр газарт бол \degreename командыг хэрэглэнэ
+\authorshort{Б.Энх-Эрдэнэ} % Таны товч нэр, нүүр болон хураангуй хуудсанд ашигласан. Дурын газарт бол \shortname командыг хэрэглэнэ 
+\authorlong{Болормаагын Энх-Эрдэнэ} % Таны бүтэн нэр, нүүр болон хураангуй хуудсанд ашигласан. Дурын газарт бол \longname командыг хэрэглэнэ 
+\addresses{enkhee.ag@gmail.com} % Таны хаяг, одоогоор ашиглаагүй. Өөр газарт бол \addressname командыг хэрэглэнэ
+\subject{Компьютерийн ухаан} % Таны салбар, одоогоор ашиглаагүй. Дурынр газарт бол \subjectname командыг ашиглана
+\keywords{Хүргэлтийн үйлчилгээ, аппликэйшн, CSS, JavaScript, React Native, Design} % Түлхүүр үгс, одоогоор ашиглаагүй. Дурын газарт бол \keywordnames командыг хэрэглэнэ
+\university{\href{http://www.must.edu.mn}{Шинжлэх Ухаан Технологийн Их Сургууль}} % Их сургуулийн нэр ба веб хаяг. Дурын газарт бол \univname командыг хэрэглэнэ 
+\department{Компьютерийн ухааны салбар} % Сургууль/тэнхмийн нэр, нүүр болон хураангуй хуудсанд ашигласан. Дурын газарт бол\deptname командыг хэрэглэнэ
+\deptchair{Доктор. PhD. А. Эрдэнэбаатар} % Тэнхим/эрхлэгчийн нэр, нүүр болон хураангуй хуудсанд ашигласан. Дурын газарт бол\chairname командыг хэрэглэнэ
+\group{Робот техникийн баг} % Судалгааны баг/тэнхмийн нэр, нүүр хуудсанд ашигласан. Дурын газарт бол \groupname командыг хэрэглэнэ
+\faculty{\href{http://www.sict.edu.mn}{Мэдээлэл, холбооны технологийн сургууль}} % Салбар сургууль/факультетийн нэр, нүүр болон хураангуй хуудсанд ашигласан. Дурын газарт бол \facname командыг ашиглана
+
+\hypersetup{pdftitle=\ttitle} % Pdf файлын гарчиг
+\hypersetup{pdfauthor=\shortname} % Pdf файлын зохиогчийн нэр
+\hypersetup{pdfkeywords=\keywordnames} % Pdf файлын түлхүүр үгс
+\hypersetup{allcolors=black} % Pdf файлын бүх холбоос хар өнгөтэй
+
+\begin{document}
+    
+    \frontmatter % Агуулгын өмнөх хуудас дугаарлалт: i, ii, iii, iv... г.м.
+    
+    \pagestyle{plain} % Тезисийн загварыг дуудах хүртэлх толгой мөрийн суурь загвар
+    
+	\include{FrontBackMatter/Titlepage} % Нүүр хуудас
+	\include{FrontBackMatter/Plan-Review} % Төлөвлөгөө, гүйцэтгэл, шүүмжийн хуудас
+	\include{FrontBackMatter/Declaration} % Мэдэгдлийн хуудас
+	% \include{FrontBackMatter/Quotation} % Ишлэл хуудас
+	\include{FrontBackMatter/Abstract} % Ажлын хураангуй
+ 	\include{FrontBackMatter/Acknowledgments} % Талархлын хуудас
+	\include{FrontBackMatter/Abbreviations} % Товчилсон үгс
+	% \include{FrontBackMatter/Constants} % Ашигласан тогтмолууд
+	% \include{FrontBackMatter/Symbols} % Ашгласан таних тэмдгүүд
+	% \include{FrontBackMatter/Dedication} % Ажлыг хэнд зориулсан
+	\include{FrontBackMatter/Glossary} % Тайлбар толь
+    \include{FrontBackMatter/Intro}
+    
+    %-------------------------------------------------------------------------------
+    %	LIST OF CONTENTS/FIGURES/TABLES PAGES
+    %-------------------------------------------------------------------------------
+    
+    \tableofcontents % Гарчиг хэвлэх
+    \listoffigures % Зургийн жагсаалт хэвлэх
+    \listoftables % Хүснэгтийн жагсаалт хэвлэх
+    
+    %-------------------------------------------------------------------------------
+    %	THESIS CONTENT - CHAPTERS
+    %-------------------------------------------------------------------------------
+    
+    \mainmatter % Хуудасны тоон (1,2,3...) дугаарлалт эхлэнэ
+    
+    \pagestyle{thesis} % Хуудасны тогойг "thesis" загвар руу буцаах
+    \myformat % Бүлгийн нэрийг тусгай хуудсанд хэвлэх
+    
+    % Тезисийн бүлгүүдийг Chapters хавтаснаас бие даасан файл байдлаар оруулах
+    
+    \include{Chapters/Chapter1}
+    \include{Chapters/Chapter2} 
+    \include{Chapters/Chapter3}
+    %\include{Chapters/Chapter4} 
+    %\include{Chapters/Chapter5}
+    
+    % Дүгнэлт бүлэг
+    \include{FrontBackMatter/Conclusion} % Дүгнэлт
+    
+    
+    %-------------------------------------------------------------------------------
+    %	THESIS CONTENT - APPENDICES
+    %-------------------------------------------------------------------------------
+    
+    \appendix % Дараах "chapters" нь Хавсралт болохыг LaTex -д хэлэх
+    
+    % Тезисийн бүлгүүдийг Appendices хавтаснаас бие даасан файл байдлаар оруулах
+    
+    %\include{Appendices/AppendixA}
+    %\include{Appendices/AppendixB}
+    %\include{Appendices/AppendixC}
+    
+    %-------------------------------------------------------------------------------
+    %	BIBLIOGRAPHY
+    %-------------------------------------------------------------------------------
+    \defformat % Бүлгийн нэрийг оргиналь байдлаар хэвлэх
+    
+    \addchaptertocentry{Ашигласан материалын жагсаалт} % Ном зүйг гарчигт нэмэх
+    
+    \printbibliography[heading=bibliography,title={Ашигласан материалын жагсаалт}]
+    
+    %-------------------------------------------------------------------------------
+
+\end{document}  
+ 
